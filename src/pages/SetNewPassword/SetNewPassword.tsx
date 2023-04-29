@@ -1,9 +1,13 @@
 import React from "react";
+import { SetNewPasswordForm } from "pages/SetNewPassword/SetNewPasswordForm";
+import { useParams } from "react-router-dom";
 
 export const SetNewPassword = () => {
+  const {token} = useParams();
+
   return (
     <div>
-      <h1>SetNewPassword</h1>
+      <SetNewPasswordForm token={token}/>
     </div>
   );
 };

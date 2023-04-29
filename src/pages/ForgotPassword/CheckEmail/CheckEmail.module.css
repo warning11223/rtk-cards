@@ -1,0 +1,48 @@
+.check {
+  max-width: 413px;
+  height: 462px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  margin-top: 60px;
+}
+.check__title {
+  padding-top: 35px;
+  margin-bottom: 30px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 32px;
+  color: #000000;
+}
+.check__img {
+  margin-bottom: 31px;
+}
+.check__text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  color: #000000;
+  opacity: 0.5;
+  margin-bottom: 41px;
+}
+.check__btn {
+  padding: 8px 120px;
+  background: #366EFF;
+  box-shadow: 0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 31px;
+  text-decoration: none;
+  transition: all 0.2s linear;
+}
+.check__btn:hover {
+  background: #2d5fe0;
+}
+
+/*# sourceMappingURL=CheckEmail.module.css.map */
