@@ -5,7 +5,7 @@
   background: #FFFFFF;
   box-shadow: #f6bf92 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
   border-radius: 2px;
-  margin-top: 60px;
+  margin-top: 12px;
 }
 .profile__title {
   padding-top: 27px;
@@ -112,6 +112,19 @@
 }
 .profile__editBtn:hover {
   background: #e56200;
+}
+.profile__link {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-decoration: none;
+  color: #000000;
+  margin-top: 24px;
+  margin-left: 136px;
+  transition: all 0.2s linear;
+}
+.profile__link:hover {
+  color: #e56200;
 }
 
 /*# sourceMappingURL=Profile.module.css.map */

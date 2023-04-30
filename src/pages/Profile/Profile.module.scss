@@ -9,7 +9,7 @@
   background: #FFFFFF;
   box-shadow: $box-shadow;
   border-radius: 2px;
-  margin-top: 60px;
+  margin-top: 12px;
 
   &__title {
     padding-top: 27px;
@@ -132,6 +132,22 @@
 
     &:hover {
       background: $base-color-hover;
+    }
+  }
+
+  &__link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+    color: #000000;
+    margin-top: 24px;
+    margin-left: 136px;
+
+    transition: all .2s linear;
+
+    &:hover {
+      color: $base-color-hover;
     }
   }
 }

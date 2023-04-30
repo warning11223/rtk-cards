@@ -20,6 +20,9 @@ export const authApi = {
   setNewPassword: (arg: SetNewPassword) => {
     return instance.post<Response>('/auth/set-new-password', arg)
   },
+  authMe: () => {
+    return instance.post<ProfileType>('/auth/me', {})
+  }
 };
 
 export type ArgRegisterType = Omit<ArgLoginType, 'rememberMe'>

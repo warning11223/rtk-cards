@@ -3,9 +3,10 @@
   height: 462px;
   margin: 0 auto;
   background: #FFFFFF;
-  box-shadow: #ff7d0b;
+  box-shadow: #f6bf92 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
   border-radius: 2px;
   margin-top: 60px;
+  margin-bottom: 40px;
 }
 .register__title {
   padding-top: 35px;

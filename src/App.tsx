@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { MainPage } from "pages/MainPage/MainPage";
 import { Cards } from "pages/Cards/Cards";
@@ -12,13 +12,23 @@ import { Profile } from "pages/Profile/Profile";
 import { Register } from "pages/Register/Register";
 import { SetNewPassword } from "pages/SetNewPassword/SetNewPassword";
 import { Header } from "features/Header/Header";
+import { useAppDispatch, useAppSelector } from "app/hooks";
+import { authThunks, Loading } from "features/auth/authSlice";
+import { Loader } from "pages/Loader/Loader";
 
 function App() {
+  const dispatch = useAppDispatch();
+  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
+
+  useEffect(() => {
+    dispatch(authThunks.authMe())
+  }, []);
+
   return (
     <div className="App">
       <Header />
       <Routes>
-        <Route path={"/"} element={<MainPage />} />
+        <Route path={"/"} element={isAuthorized ? <Navigate to="/login" replace /> : <Profile />}/>
         <Route path={"/cards"} element={<Cards />} />
         <Route path={"/check-email"} element={<CheckEmail />} />
         <Route path={"/forgot-password"} element={<ForgotPassword />} />
