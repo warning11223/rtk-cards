@@ -47,6 +47,11 @@ export const LoginForm = () => {
         <Link to={"/forgot-password"} className={s.login__forgotPassword}>Forgot Password?</Link>
 
         <input type="submit" className={s.login__btn} value={'Sign in'}/>
+
+        <div className={s.login__text}>
+          Don't have an account?
+        </div>
+        <Link to={"/register"} className={s.login__registerBtn}>Register</Link>
       </div>
     </form>
   );

@@ -1,3 +1,137 @@
-.profile {
+@import "../../common/utils/variables";
 
+
+
+.profile {
+  max-width: 413px;
+  height: 362px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  box-shadow: $box-shadow;
+  border-radius: 2px;
+  margin-top: 60px;
+
+  &__title {
+    padding-top: 27px;
+    margin-bottom: 30px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+  }
+
+  &__avatar {
+    height: 96px;
+    width: 96px;
+    border-radius: 50px;
+    margin-bottom: 17px;
+  }
+
+  &__name {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  &__editContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  &__edit {
+    cursor: pointer;
+  }
+
+  &__email {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #000000;
+    opacity: 0.5;
+    margin-bottom: 30px;
+  }
+
+  &__btn {
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    gap: 10px;
+    background: #FCFCFC;
+    box-shadow: 0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    border: none;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.01em;
+    color: #000000;
+    opacity: 0.8;
+
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      background: #cbcbcb;
+    }
+  }
+
+  &__avatarContainer {
+    position: relative;
+  }
+
+  &__editAvatar {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    bottom: 19px;
+    right: 157px;
+    cursor: pointer;
+  }
+
+  &__input {
+    width: 347px;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    border: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+
+    transition: all .3s ease-in-out;
+
+    &:focus {
+      border-bottom: 2px solid $base-color;
+    }
+  }
+
+  &__editableInputContainer {
+    position: relative;
+  }
+
+  &__editBtn {
+    position: absolute;
+    bottom: 29px;
+    right: 0;
+    background: $base-color;
+    border-radius: 2px;
+    border: none;
+    padding: 5px 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      background: $base-color-hover;
+    }
+  }
 }

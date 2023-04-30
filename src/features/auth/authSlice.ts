@@ -5,7 +5,7 @@ import {
   authApi,
   ForgotPasswordType,
   Response,
-  ProfileType
+  ProfileType, UpdateMe
 } from "features/auth/authApi";
 import { createAppAsyncThunk } from "common/utils/create-app-async-thunk";
 
@@ -46,6 +46,21 @@ const slice = createSlice({
       .addCase(register.rejected, (state) => {
         state.loading = Loading.Error;
       })
+      .addCase(logout.pending, (state) => {
+        state.loading = Loading.Loading;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.isAuthorized = false;
+        state.profile = null;
+        state.loading = Loading.Success;
+      })
+      .addCase(updateMe.fulfilled, (state, action) => {
+        state.loading = Loading.Success;
+        state.profile = action.payload.updatedUser;
+      })
+      .addCase(updateMe.pending, (state) => {
+        state.loading = Loading.Loading;
+      })
 
   }
 });
@@ -61,10 +76,23 @@ const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>("auth/
   return { profile: res.data };
 });
 
+const logout = createAppAsyncThunk<void, void>("auth/logout", async () => {
+  const res = await authApi.logout();
+});
 
+const updateMe = createAppAsyncThunk<{ updatedUser: ProfileType, error?: string }, UpdateMe>("auth/authMe", async (arg: UpdateMe) => {
+  const res = await authApi.updateMe(arg);
+
+  return {
+    updatedUser: res.data.updatedUser,
+    error: res.data.error
+  };
+});
 
 export const authReducer = slice.reducer;
 export const authThunks = {
   register,
-  login
+  login,
+  logout,
+  updateMe
 };

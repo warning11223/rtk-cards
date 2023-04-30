@@ -8,12 +8,18 @@ export const authApi = {
   login: (arg: ArgLoginType) => {
     return instance.post<ProfileType>("auth/login", arg)
   },
+  logout: () => {
+    return instance.delete<Response>('/auth/me', {})
+  },
+  updateMe: (arg: UpdateMe) => {
+    return instance.put<UpdateMeResponse>('/auth/me', arg)
+  },
   forgotPassword: (arg: ForgotPasswordType) => {
     return axios.post<Response>(`https://neko-back.herokuapp.com/2.0/auth/forgot`, arg)
   },
   setNewPassword: (arg: SetNewPassword) => {
     return instance.post<Response>('/auth/set-new-password', arg)
-  }
+  },
 };
 
 export type ArgRegisterType = Omit<ArgLoginType, 'rememberMe'>
@@ -68,5 +74,15 @@ export type Response =  {
 export type SetNewPassword =  {
   password: string
   resetPasswordToken: string
+}
+
+export type UpdateMe = {
+  name: string
+  avatar: string
+}
+
+export type UpdateMeResponse = {
+  updatedUser: ProfileType
+  error?: string
 }
 
