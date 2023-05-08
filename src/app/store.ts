@@ -1,14 +1,14 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { authReducer } from "features/auth/authSlice";
-import { passwordReducer } from "features/password/resetPasswordSlice";
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     auth: authReducer,
-    password: passwordReducer
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    })
 });
 
 export type AppDispatch = typeof store.dispatch;

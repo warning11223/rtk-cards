@@ -1,11 +1,11 @@
 import React from "react";
 import { LoginForm } from "pages/Login/LoginForm";
-import { useAppSelector } from "app/hooks";
 import { Loading } from "features/auth/authSlice";
 import { Loader } from "pages/Loader/Loader";
 import { Navigate } from "react-router-dom";
 
-import s from './Login.module.scss'
+import s from "./Login.module.scss";
+import { useAppSelector } from "common/hooks/useAppSelector";
 
 export const Login = () => {
   const { loading, isAuthorized } = useAppSelector(state => state.auth);

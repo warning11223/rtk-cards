@@ -5,19 +5,20 @@ import { store } from "app/store";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "index.scss";
+import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter } from "react-router-dom";
+import { GlobalError } from "common/GlobalError/GlobalError";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <App />
+        <GlobalError />
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

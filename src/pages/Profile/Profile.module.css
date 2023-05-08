@@ -98,6 +98,11 @@
 .profile__editableInputContainer {
   position: relative;
 }
+.profile__profile__editableWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .profile__editBtn {
   position: absolute;
   bottom: 29px;

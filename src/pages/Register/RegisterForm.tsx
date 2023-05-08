@@ -1,10 +1,11 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useAppDispatch } from "app/hooks";
 import { authThunks } from "features/auth/authSlice";
 
 import s from "./RegisterForm.module.scss";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "common/hooks/useAppDispatch";
+import { toast } from "react-toastify";
 
 type Inputs = {
   email: string,
@@ -20,7 +21,14 @@ export const RegisterForm = () => {
       email: data.email,
       password: data.password
     };
-    dispatch(authThunks.register(payload));
+    dispatch(authThunks.register(payload))
+      .unwrap()
+      .then(res => {
+        toast.success('You have successfully registered');
+      })
+      .catch(err => {
+        toast.error(err.e.response.data.error)
+      })
   };
 
   return (

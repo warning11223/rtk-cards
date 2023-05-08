@@ -1,8 +1,8 @@
 import React from "react";
 import { RegisterForm } from "pages/Register/RegisterForm";
-import { useAppSelector } from "app/hooks";
 import { Loading } from "features/auth/authSlice";
 import { Loader } from "pages/Loader/Loader";
+import { useAppSelector } from "common/hooks/useAppSelector";
 
 export const Register = () => {
   const { loading } = useAppSelector(state => state.auth);

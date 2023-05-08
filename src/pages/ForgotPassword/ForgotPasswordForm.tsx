@@ -1,10 +1,10 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useAppDispatch } from "app/hooks";
-import { passwordThunks } from "features/password/resetPasswordSlice";
-
-import s from './ForgotPassword.module.scss'
+import s from "./ForgotPassword.module.scss";
 import React from "react";
 import { Link } from "react-router-dom";
+import { authThunks } from "features/auth/authSlice";
+import { useAppDispatch } from "common/hooks/useAppDispatch";
+import { toast } from "react-toastify";
 
 type Inputs = {
   email: string,
@@ -24,7 +24,15 @@ export const ForgotPasswordForm = () => {
                 link</a>
                 </div>`
     };
-    dispatch(passwordThunks.forgotPassword(arg));
+
+    dispatch(authThunks.forgotPassword(arg))
+      .unwrap()
+      .then(res => {
+        toast.success("Check your email");
+      })
+      .catch(err => {
+        toast.error(err.e.response.data.error);
+      });
   };
 
   return (
@@ -33,13 +41,13 @@ export const ForgotPasswordForm = () => {
 
       <div className={s.forgot__container}>
         <span className={s.forgot__span}>Email</span>
-        <input {...register("email", {required: true})} className={s.forgot__input}/>
-        {errors.email && <span style={{color: "red", marginTop: "-15px"}}>Email is required</span>}
+        <input {...register("email", { required: true })} className={s.forgot__input} />
+        {errors.email && <span style={{ color: "red", marginTop: "-15px" }}>Email is required</span>}
 
         <span className={s.forgot__text}>Enter your email address and we will send you further instructions</span>
       </div>
 
-      <input type="submit" value="Send instructions" className={s.forgot__btn}/>
+      <input type="submit" value="Send instructions" className={s.forgot__btn} />
 
       <div className={s.forgot__remember}>Did you remember your password?</div>
 

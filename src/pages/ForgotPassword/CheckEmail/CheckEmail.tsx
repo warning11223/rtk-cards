@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import check from '../../../common/img/check.svg'
+import check from '../../../img/check.svg'
 
 import s from './CheckEmail.module.scss'
 

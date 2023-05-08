@@ -1,33 +1,58 @@
 import React, { useState } from "react";
-import { useAppDispatch, useAppSelector } from "app/hooks";
-import avatar from "../../common/img/avatar.svg";
-import edit from "../../common/img/edit.svg";
-import logout from "../../common/img/logout.svg";
-import editAvatar from "../../common/img/editAvatar.svg";
-import arrowLeft from '../../common/img/arrow-left.svg'
+import avatar from "../../img/avatar.svg";
+import edit from "../../img/edit.svg";
+import logout from "../../img/logout.svg";
+import editAvatar from "../../img/editAvatar.svg";
+import arrowLeft from "../../img/arrow-left.svg";
 
 import s from "./Profile.module.scss";
 import { authThunks, Loading } from "features/auth/authSlice";
 import { Link, Navigate } from "react-router-dom";
 import { Loader } from "pages/Loader/Loader";
+import { useAppDispatch } from "common/hooks/useAppDispatch";
+import { useAppSelector } from "common/hooks/useAppSelector";
+import { toast } from "react-toastify";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+type InputType = {
+  name: string
+}
 
 export const Profile = () => {
   const dispatch = useAppDispatch();
   const { profile, loading, isAuthorized } = useAppSelector(state => state.auth);
   const [editable, setEditable] = useState(false);
   const [name, setName] = useState(profile?.name);
+  const { register, formState, handleSubmit } = useForm<InputType>();
 
   const logoutHandler = () => {
-    dispatch(authThunks.logout());
+    dispatch(authThunks.logout())
+      .unwrap()
+      .then(res => {
+        toast.info("You have successfully logout");
+      })
+      .catch(err => {
+        toast.error(err.e.response.data.error);
+      });
   };
 
-  const saveHandler = () => {
+  const saveHandler: SubmitHandler<InputType> = data => {
+    if (data.name.length < 4) {
+      return
+    }
     setEditable(false);
     if (name) {
       dispatch(authThunks.updateMe({
         name,
         avatar: "https//avatar-url.img"
-      }));
+      }))
+        .unwrap()
+        .then(res => {
+          toast.info(`Name was changed to ${res.updatedUser.name}`);
+        })
+        .catch(err => {
+          toast.error(err.e.response.data.error);
+        });
     }
   };
 
@@ -56,15 +81,19 @@ export const Profile = () => {
         <div className={s.profile__editContainer}>
           {
             editable ?
-              <div className={s.profile__editableInputContainer}>
-                <input
-                  className={s.profile__input}
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.currentTarget.value)}
-                  autoFocus
-                />
-                <button className={s.profile__editBtn} onClick={saveHandler}>Save</button>
+              <div className={s.profile__editableWrapper}>
+                <form className={s.profile__editableInputContainer} onSubmit={handleSubmit(saveHandler)}>
+                  <input
+                    {...register("name", { required: true, minLength: 4 })}
+                    className={s.profile__input}
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.currentTarget.value)}
+                    autoFocus
+                  />
+                  <button type={"submit"} className={s.profile__editBtn}>Save</button>
+                </form>
+                {formState.errors.name && <span style={{ color: "red", marginTop: "-15px" }}>Min length 4</span>}
               </div>
               : <span
                 className={s.profile__name}
