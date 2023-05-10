@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { authThunks } from "features/auth/authSlice";
 
 import s from "./LoginForm.module.scss";
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "common/hooks/useAppDispatch";
 import { toast } from "react-toastify";
@@ -18,17 +18,6 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const { register, handleSubmit, formState } = useForm<Inputs>();
 
-  /*useEffect(() => {
-    if (formState.isSubmitSuccessful) {
-      reset({
-        email: '',
-        password: '',
-        checkbox: false
-      })
-    }
-  }, [formState, reset]);*/
-
-
   const onSubmit: SubmitHandler<Inputs> = data => {
     const payload = {
       email: data.email,
@@ -39,7 +28,7 @@ export const LoginForm = () => {
       .unwrap()
       .then(res => {
         toast.success("You have successfully logged in");
-        navigate("/profile");
+        navigate("/packs-list");
       })
       .catch(err => {
         toast.error(err.e.response.data.error);

@@ -16,9 +16,12 @@ export const TableSearch: React.FC<Props> = ({ search, setSearch }) => {
   const debouncedValue = useDebounce(value, 800);
 
   useEffect(() => {
-    setSearch(debouncedValue)
-  }, [debouncedValue]);
+    if (search === "") setValue("");
+  }, [search])
 
+  useEffect(() => {
+    setSearch(debouncedValue);
+  }, [debouncedValue]);
 
   const changeHandler = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValue(e.currentTarget.value);

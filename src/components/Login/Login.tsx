@@ -11,7 +11,7 @@ export const Login = () => {
   const { loading, isAuthorized } = useAppSelector(state => state.auth);
 
   if (isAuthorized) {
-    return <Navigate to={"/profile"} />
+    return <Navigate to={"/packs-list"} />
   }
 
   return (

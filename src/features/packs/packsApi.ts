@@ -4,8 +4,8 @@ export const packsApi = {
   getPack: (params: GetPack) => {
     return instance.get<PackResponse>("/cards/pack", { params });
   },
-  createPack: (arg: CreatePack) => {
-    return instance.post<PackResponse>("/cards/pack", arg);
+  createPack: (arg: CardsPack) => {
+    return instance.post<NewCardPack>("/cards/pack", arg);
   },
   deletePack: (id: string) => {
     return instance.delete<PackResponse>("/cards/pack", {
@@ -15,7 +15,7 @@ export const packsApi = {
     });
   },
   updatePack: (arg: UpdatePack) => {
-    return instance.put<PackResponse>("/cards/pack", arg);
+    return instance.put<CardsPack>("/cards/pack", arg);
   }
 };
 
@@ -23,10 +23,10 @@ export type GetPack = {
   packName?: string
   min?: number
   max?: number
-  sortPacks?: number
+  sortPacks?: string
   page?: number
   pageCount?: number
-  user_id?: number
+  user_id?: string
 }
 
 export type Card = {
@@ -56,13 +56,38 @@ export type PackResponse = {
   pageCount: number
 }
 
-type CreatePack = {
-  name: string // если не отправить будет таким
-  deckCover: string // не обязателен
-  private: boolean // если не отправить будет такой
+export type CardsPack = {
+  cardsPack: {
+    name: string // если не отправить будет таким
+    deckCover: string // не обязателен
+    private: boolean // если не отправить будет такой
+  }
 }
 
-type UpdatePack = {
-  _id: string
+export type UpdatePack = {
+  cardsPack: {
+    _id: string
+    name: string
+  }
+}
+
+export type NewCardPack = {
+  cardsCount: number
+  created: string
+  deckCover: string
+  grade: number
+  more_id: string
   name: string
+  path: string
+  private: boolean
+  rating: number
+  shots: number
+  type: string
+  updated: string
+  user_id: string
+  user_name: string
+  __v: number
+  _id: string
+  token: string
+  tokenDeathTime: number
 }

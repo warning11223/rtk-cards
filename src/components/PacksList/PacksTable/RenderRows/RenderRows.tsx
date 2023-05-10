@@ -1,40 +1,40 @@
 import React from "react";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
+import { Card } from "features/packs/packsApi";
+import { TableActions } from "components/PacksList/PacksTable/TableActions/TableActions";
 import { useAppSelector } from "common/hooks";
-import { selectCards } from "features/packs/packsSelectors";
+import { selectUserId } from "features/auth/authSelectors";
 
-export const RenderRows = () => {
-  const cards = useAppSelector(selectCards);
+type Props = {
+  cards: Card []
+}
 
-  const cardsEmpty = <div style={{
-    height: '300px',
-    textAlign: 'center',
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    padding: '20px',
-    fontSize: '22px',
-    fontWeight: 'bold'
-  }}>😮 Packs not found</div>
+export const RenderRows: React.FC<Props> = ({cards}) => {
+  const userId = useAppSelector(selectUserId);
 
   return (
     <>
-      {!cards.length ? cardsEmpty :
-        cards.map((card) => (
-        <TableRow
-          key={card._id}
-          sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-        >
-          <TableCell component="th" scope="row">
-            {card.name}
-          </TableCell>
-          <TableCell align="right">{card.cardsCount}</TableCell>
-          <TableCell align="right">{card.updated.toString().substring(0, 10)}</TableCell>
-          <TableCell align="right">{card.user_name}</TableCell>
-          <TableCell align="right">{card.path}</TableCell>
-        </TableRow>
-      ))}
+      {
+        cards.map(card => (
+          <TableRow
+            key={card._id}
+            sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+          >
+            <TableCell component="th" scope="row">
+              {card.name}
+            </TableCell>
+            <TableCell align="right">{card.cardsCount}</TableCell>
+            <TableCell align="right">{card.updated.toString().substring(0, 10)}</TableCell>
+            <TableCell align="right">{card.user_name}</TableCell>
+            <TableCell align="right">
+              <TableActions
+                myCard={userId === card.user_id}
+                id={card._id}
+              />
+            </TableCell>
+          </TableRow>
+        ))}
     </>
   );
 };

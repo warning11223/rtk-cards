@@ -6,9 +6,9 @@ import Select, { SelectChangeEvent } from "@mui/material/Select/Select";
 import MenuItem from "@mui/material/MenuItem/MenuItem";
 import Box from "@mui/material/Box/Box";
 import { useAppSelector } from "common/hooks/useAppSelector";
-import { selectCardPacksTotalCount } from "features/auth/authSelectors";
 
 import s from "./TablePagination.module.scss";
+import { selectCardPacksTotalCount } from "features/packs/packsSelectors";
 
 type Props = {
   numberOfDisplayed: number

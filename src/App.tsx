@@ -42,8 +42,8 @@ function App() {
           <Route path={"/profile"} element={<Profile />} />
           <Route path={"/cards"} element={<Cards />} />
           <Route path={"/learn"} element={<Learn />} />
+          <Route path={"/packs-list"} element={<PacksList />} />
         </Route>
-        <Route path={"/packs-list"} element={<PacksList />} />
         <Route path={"/check-email"} element={<CheckEmail />} />
         <Route path={"/forgot-password"} element={<ForgotPassword />} />
         <Route path={"/login"} element={<Login />} />
