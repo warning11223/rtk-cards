@@ -1,0 +1,9 @@
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+/*# sourceMappingURL=TableHeader.module.css.map */

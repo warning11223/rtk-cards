@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding-top: 36px;
+  margin-bottom: 34px;
+}
+
+/*# sourceMappingURL=PackListHeader.module.css.map */

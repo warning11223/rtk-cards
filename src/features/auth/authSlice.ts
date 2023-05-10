@@ -86,13 +86,13 @@ const slice = createSlice({
   }
 });
 
-const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", async (arg: ArgRegisterType, thunkAPI) => {
+const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", async (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
     await authApi.register(arg);
   }, false);
 });
 
-const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>("auth/login", async (arg: ArgLoginType, thunkAPI) => {
+const login = createAppAsyncThunk<{ profile: ProfileType }, ArgLoginType>("auth/login", async (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
     const res = await authApi.login(arg);
     return { profile: res.data };
@@ -105,7 +105,7 @@ const logout = createAppAsyncThunk<void, void>("auth/logout", async (_, thunkAPI
   });
 });
 
-const updateMe = createAppAsyncThunk<{ updatedUser: ProfileType, error?: string }, UpdateMe>("auth/updateMe", async (arg: UpdateMe, thunkAPI) => {
+const updateMe = createAppAsyncThunk<{ updatedUser: ProfileType, error?: string }, UpdateMe>("auth/updateMe", async (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
     const res = await authApi.updateMe(arg);
 
@@ -123,14 +123,14 @@ const authMe = createAppAsyncThunk<{ profile: ProfileType }, void>("auth/authMe"
   }, false);
 });
 
-const forgotPassword = createAppAsyncThunk<{ response: Response }, ForgotPasswordType>("resetPassword/forgotPassword", async (arg: ForgotPasswordType, thunkAPI) => {
+const forgotPassword = createAppAsyncThunk<{ response: Response }, ForgotPasswordType>("resetPassword/forgotPassword", async (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
     const res = await authApi.forgotPassword(arg);
     return { response: res.data };
   }, false);
 });
 
-const setNewPassword = createAppAsyncThunk<{ response: Response }, SetNewPassword>("resetPassword/setNewPassword", async (arg: SetNewPassword, thunkAPI) => {
+const setNewPassword = createAppAsyncThunk<{ response: Response }, SetNewPassword>("resetPassword/setNewPassword", async (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
     const res = await authApi.setNewPassword(arg);
     return { response: res.data };

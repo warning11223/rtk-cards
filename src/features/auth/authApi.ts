@@ -80,8 +80,8 @@ export type SetNewPassword =  {
 }
 
 export type UpdateMe = {
-  name: string
-  avatar: string
+  name?: string
+  avatar?: string
 }
 
 export type UpdateMeResponse = {
