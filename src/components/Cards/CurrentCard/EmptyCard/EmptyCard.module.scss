@@ -1,0 +1,11 @@
+.emptyCard {
+  &__container {
+    padding-top: 86px;
+  }
+
+  &__text {
+    color: #000000;
+    opacity: 0.5;
+    margin-bottom: 32px;
+  }
+}

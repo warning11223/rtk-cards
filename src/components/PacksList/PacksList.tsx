@@ -7,11 +7,12 @@ import { useAppSelector } from "common/hooks/useAppSelector";
 import { PacksListHeader } from "components/PacksList/PacksListHeader/PacksListHeader";
 import { TableHeader } from "components/PacksList/TableHeader/TableHeader";
 import { TablePagination } from "components/PacksList/TablePagination/TablePagination";
-import { selectPageCount } from "features/packs/packsSelectors";
+import { selectCardPacksTotalCount, selectPageCount } from "features/packs/packsSelectors";
 
 export const PacksList = () => {
   const dispatch = useAppDispatch();
   const countPage = useAppSelector(selectPageCount);
+  const packsTotalCount = useAppSelector(selectCardPacksTotalCount);
   const [page, setPage] = useState(1);
   const [numberOfDisplayed, setNumberOfDisplayed] = useState(countPage <= 0 ? 4 : countPage);
   const [search, setSearch] = useState("");
@@ -62,6 +63,7 @@ export const PacksList = () => {
             setNumberOfDisplayed={setNumberOfDisplayed}
             page={page}
             setPage={setPage}
+            totalCount={packsTotalCount}
           />
         </div>
       }

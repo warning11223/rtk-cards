@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { RenderRows } from "components/PacksList/PacksTable/RenderRows/RenderRows";
 import { useAppSelector } from "common/hooks";
-import { selectCards } from "features/packs/packsSelectors";
+import { selectPacks } from "features/packs/packsSelectors";
 import IconButton from "@mui/material/IconButton/IconButton";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
@@ -20,8 +20,8 @@ type Props = {
 }
 
 export const PacksTable: React.FC<Props> = ({ sort, setSort }) => {
-  const [clicked, setClicked] = useState(false);
-  const cards = useAppSelector(selectCards);
+  const [clicked, setClicked] = useState(true);
+  const cards = useAppSelector(selectPacks);
 
   const cardsEmpty = <div style={{
     height: "300px",

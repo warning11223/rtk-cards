@@ -1,0 +1,28 @@
+@import "../../common/utils/variables";
+
+.cards {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 50px;
+
+  &__link {
+    position: absolute;
+    left: -126px;
+    top: 13px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+    color: #000000;
+    margin-top: 24px;
+    margin-left: 136px;
+
+    transition: all .2s linear;
+
+    &:hover {
+      color: $base-color-hover;
+    }
+  }
+}

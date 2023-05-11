@@ -40,7 +40,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
           <Route path={"/"} element={<Profile />} />
           <Route path={"/profile"} element={<Profile />} />
-          <Route path={"/cards"} element={<Cards />} />
+          <Route path={"/cards/:id"} element={<Cards />} />
           <Route path={"/learn"} element={<Learn />} />
           <Route path={"/packs-list"} element={<PacksList />} />
         </Route>

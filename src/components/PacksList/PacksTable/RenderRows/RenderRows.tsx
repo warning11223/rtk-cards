@@ -5,6 +5,9 @@ import { Card } from "features/packs/packsApi";
 import { TableActions } from "components/PacksList/PacksTable/TableActions/TableActions";
 import { useAppSelector } from "common/hooks";
 import { selectUserId } from "features/auth/authSelectors";
+import { Link } from "react-router-dom";
+
+import s from './RenderRows.module.scss'
 
 type Props = {
   cards: Card []
@@ -22,7 +25,9 @@ export const RenderRows: React.FC<Props> = ({cards}) => {
             sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
           >
             <TableCell component="th" scope="row">
-              {card.name}
+              <Link to={`/cards/${card._id}`} className={s.rows__link}>
+                {card.name}
+              </Link>
             </TableCell>
             <TableCell align="right">{card.cardsCount}</TableCell>
             <TableCell align="right">{card.updated.toString().substring(0, 10)}</TableCell>

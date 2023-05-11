@@ -118,7 +118,16 @@
 .profile__editBtn:hover {
   background: #e56200;
 }
+.profile__wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
 .profile__link {
+  position: absolute;
+  left: -126px;
+  top: 13px;
   display: flex;
   justify-content: flex-start;
   align-items: center;

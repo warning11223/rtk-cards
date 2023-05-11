@@ -60,7 +60,7 @@ export const Profile = () => {
   }
 
   return (
-    <>
+    <div className={s.profile__wrapper}>
       <Link className={s.profile__link} to={"/packs-list"}>
         <img src={arrowLeft} alt="arrow" />
         Back to Packs List
@@ -106,6 +106,6 @@ export const Profile = () => {
           Log out
         </button>
       </div>
-    </>
+    </div>
   );
 };

@@ -1,11 +1,13 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { authReducer } from "features/auth/authSlice";
 import { packsReducer } from "features/packs/packsSlice";
+import { cardsReducer } from "features/cards/cardsSlice";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    packs: packsReducer
+    packs: packsReducer,
+    cards: cardsReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -1,3 +1,10 @@
-
+.rows__link {
+  text-decoration: none;
+  color: #000000;
+  transition: all 0.2s linear;
+}
+.rows__link:hover {
+  color: #e56200;
+}
 
 /*# sourceMappingURL=RenderRows.module.css.map */

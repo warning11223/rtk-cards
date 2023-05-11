@@ -5,23 +5,21 @@ import FormControl from "@mui/material/FormControl/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select/Select";
 import MenuItem from "@mui/material/MenuItem/MenuItem";
 import Box from "@mui/material/Box/Box";
-import { useAppSelector } from "common/hooks/useAppSelector";
 
 import s from "./TablePagination.module.scss";
-import { selectCardPacksTotalCount } from "features/packs/packsSelectors";
 
 type Props = {
   numberOfDisplayed: number
   setNumberOfDisplayed: (value: number) => void
   page: number
   setPage: (value: number) => void
+  totalCount: number
 }
 
 export const TablePagination: React.FC<Props> = (props) => {
-  const { numberOfDisplayed, setNumberOfDisplayed, setPage, page } = props;
+  const { numberOfDisplayed, setNumberOfDisplayed, setPage, page, totalCount } = props;
 
-  const cardPacksTotalCount = useAppSelector(selectCardPacksTotalCount);
-  const paginationCount = Math.floor(cardPacksTotalCount / numberOfDisplayed);
+  const paginationCount = Math.floor(totalCount / numberOfDisplayed);
 
   const handleChange = (event: SelectChangeEvent) => {
     setNumberOfDisplayed(+event.target.value);

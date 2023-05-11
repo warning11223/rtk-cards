@@ -1,0 +1,8 @@
+.completed__search {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 30px;
+}
+
+/*# sourceMappingURL=CompletedCard.module.css.map */
