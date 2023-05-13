@@ -17,7 +17,7 @@ export const cardsApi = {
   updateCard: (arg: UpdateRequest) => {
     return instance.put("/cards/card", arg);
   },
-  gradeCard: (arg: { grade: number, card_id: string }) => {
+  gradeCard: (arg: { grade: number, card_id: string } ) => {
     return instance.put<UpdatedGrade>("/cards/grade", arg);
   }
 };
@@ -58,14 +58,14 @@ export type CardResponse = {
 export type CreateRequest = {
   card: {
     cardsPack_id: string
-    question: string // если не отправить будет таким
-    answer: string // если не отправить будет таким
-    grade: number // 0..5, не обязателен
-    shots: number // не обязателен
-    answerImg: string // не обязателен
-    questionImg: string // не обязателен
-    questionVideo: string // не обязателен
-    answerVideo: string // не обязателен
+    question?: string // если не отправить будет таким
+    answer?: string // если не отправить будет таким
+    grade?: number // 0..5, не обязателен
+    shots?: number // не обязателен
+    answerImg?: string // не обязателен
+    questionImg?: string // не обязателен
+    questionVideo?: string // не обязателен
+    answerVideo?: string // не обязателен
   }
 }
 
@@ -73,6 +73,7 @@ export type UpdateRequest = {
   card: {
     _id: string
     question: string
+    answer: string
   }
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "features/packs/packsApi";
 
 import s from "./CurrentCard.module.scss";
@@ -9,12 +9,16 @@ import { selectAuthLoading } from "features/auth/authSelectors";
 import { Loading } from "features/auth/authSlice";
 import { Loader } from "components/Loader/Loader";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import IconButton from "@mui/material/IconButton/IconButton";
+import { MorePopup } from "features/components/MorePopup/MorePopup";
 
 type Props = {
   card: Card[]
+  myCard?: boolean
 }
 
-export const CurrentCard: React.FC<Props> = ({ card }) => {
+export const CurrentCard: React.FC<Props> = ({ card, myCard }) => {
+  const [visiblePopup, setVisiblePopup] = useState(false);
   const loading = useAppSelector(selectAuthLoading);
 
   return (
@@ -23,15 +27,27 @@ export const CurrentCard: React.FC<Props> = ({ card }) => {
         loading === Loading.Loading
           ? <h3 className={s.currentCard__loader}><Loader /></h3>
           : <div className={s.currentCard__wrapper}>
-              <h3 className={s.currentCard__title}>
-                Name Pack: <span style={{ color: "#ff7d0b" }}>{card[0].name}</span>
-              </h3>
-              <MoreVertIcon className={s.currentCard__icon}/>
-            </div>
+            <h3 className={s.currentCard__title}>
+              Name Pack: <span style={{ color: "#ff7d0b" }}>{card[0].name}</span>
+            </h3>
+            {
+              myCard &&
+              <>
+                <div className={s.currentCard__icon} onClick={() => setVisiblePopup(!visiblePopup)}>
+                  <IconButton>
+                    <MoreVertIcon />
+                  </IconButton>
+                </div>
+                {
+                  visiblePopup && <MorePopup />
+                }
+              </>
+            }
+          </div>
       }
 
       {
-        !card[0].cardsCount ? <EmptyCard /> : <CompletedCard id={card[0]._id} />
+        !card[0].cardsCount ? <EmptyCard id={card[0]._id}/> : <CompletedCard id={card[0]._id} myCard={myCard}/>
       }
     </div>
   );

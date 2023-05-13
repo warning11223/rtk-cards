@@ -4,9 +4,12 @@ import Box from "@mui/material/Box/Box";
 import IconButton from "@mui/material/IconButton/IconButton";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useAppDispatch } from "common/hooks";
+import { useAppDispatch, useAppSelector } from "common/hooks";
 import { packsThunks } from "features/packs/packsSlice";
 import { toast } from "react-toastify";
+import { selectPacks } from "features/packs/packsSelectors";
+import { PackModal } from "features/components/PackModal/PackModal";
+import { DeleteModal } from "features/components/DeleteModal/DeleteModal";
 
 type Props = {
   id: string
@@ -14,7 +17,10 @@ type Props = {
 }
 
 export const TableActions: React.FC<Props> = ({ myCard, id }) => {
+  const packs = useAppSelector(selectPacks);
   const dispatch = useAppDispatch();
+  const currentPack = packs.find(item => item._id === id)
+
 
   const deletePackHandler = () => {
     dispatch(packsThunks.deletePack(id))
@@ -28,11 +34,11 @@ export const TableActions: React.FC<Props> = ({ myCard, id }) => {
       });
   };
 
-  const updatePackHandler = () => {
+  const updatePackHandler = (text: string) => {
     dispatch(packsThunks.updatePack({
       cardsPack: {
         _id: id,
-        name: "UPDATE!!!!"
+        name: text,
       }
     }))
       .unwrap()
@@ -47,20 +53,24 @@ export const TableActions: React.FC<Props> = ({ myCard, id }) => {
 
   return (
     <Box>
-      <IconButton size={"small"}>
+      <IconButton size={"small"} disabled={!currentPack?.cardsCount}>
         <SchoolIcon />
       </IconButton>
       {
-        myCard
-        && <IconButton size={"small"} onClick={updatePackHandler}>
-          <BorderColorIcon />
-        </IconButton>
+        myCard &&
+        <PackModal callback={updatePackHandler} name={"Edit"} packName={currentPack?.name}>
+          <IconButton size={"small"}>
+            <BorderColorIcon />
+          </IconButton>
+        </PackModal>
       }
       {
-        myCard
-        && <IconButton size={"small"} onClick={deletePackHandler}>
-          <DeleteIcon />
-        </IconButton>
+        myCard &&
+        <DeleteModal callback={deletePackHandler}>
+          <IconButton size={"small"}>
+            <DeleteIcon />
+          </IconButton>
+        </DeleteModal>
       }
     </Box>
   );

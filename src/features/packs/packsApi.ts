@@ -59,7 +59,7 @@ export type PackResponse = {
 export type CardsPack = {
   cardsPack: {
     name: string // если не отправить будет таким
-    deckCover: string // не обязателен
+    deckCover?: string // не обязателен
     private: boolean // если не отправить будет такой
   }
 }

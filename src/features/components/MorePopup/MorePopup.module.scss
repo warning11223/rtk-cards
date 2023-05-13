@@ -1,0 +1,30 @@
+.morePopup {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  background: #FFFFFF;
+  border: 1px solid #CFCFCF;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);
+  padding: 30px;
+  top: 81px;
+  left: 110px;
+  z-index: 1;
+
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    gap: 15px;
+    cursor: pointer;
+    transition: all .2s linear;
+
+    &:hover {
+      color: #e56200;
+    }
+  }
+}
