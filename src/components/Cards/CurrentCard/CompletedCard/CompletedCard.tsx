@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { selectCards, selectCardsTotalCount } from "features/cards/cardsSelectors";
 import { LearnToCardBtn } from "features/components/LearnToCardBtn/LearnToCardBtn";
 import { AddToCardBtn } from "features/components/AddToCardBtn/AddToCardBtn";
+import EmptyCard from "components/Cards/CurrentCard/EmptyCard/EmptyCard";
 
 type Props = {
   id: string
@@ -39,12 +40,12 @@ export const CompletedCard: React.FC<Props> = ({ id, myCard }) => {
       });
   }, [sort, search, page, pageCount]);
 
-  const addCardHandler = () => {
+  const addCardHandler = (question: string, answer: string) => {
     const card = {
       grade: 0,
       shots: 0,
-      question: "Wie heist du?",
-      answer: "Valakas",
+      question,
+      answer,
       cardsPack_id: id
     };
 
@@ -60,28 +61,38 @@ export const CompletedCard: React.FC<Props> = ({ id, myCard }) => {
   };
 
   return (
-    <div className={s.completed}>
-      <div className={s.completed__header}>
-        <div className={s.completed__search}>
-          <TableSearch search={search} setSearch={setSearch} />
-          {
-            myCard
-              ? <AddToCardBtn onClickCallback={addCardHandler} />
-              : <LearnToCardBtn onClickCallback={() => {}} />
-          }
-        </div>
-        {
-          !cards.length ? <div style={{fontWeight: 'bold', fontSize: '30px', textAlign: 'center', paddingTop: '40px'}}>😮 No cards</div> :  <CardTable setSort={setSort} />
-        }
-        <TablePagination
-          numberOfDisplayed={pageCount}
-          setNumberOfDisplayed={setPageCount}
-          page={page}
-          setPage={setPage}
-          totalCount={cardsTotalCount}
-        />
-      </div>
-    </div>
+    <>
+      {
+        !cards.length ?
+          <EmptyCard addCardHandler={addCardHandler} /> :
+          <div className={s.completed}>
+            <div className={s.completed__header}>
+              <div className={s.completed__search}>
+                <TableSearch search={search} setSearch={setSearch} />
+                {
+                  myCard
+                    ? <AddToCardBtn onClickCallback={addCardHandler} />
+                    : <LearnToCardBtn onClickCallback={() => {
+                    }} />
+                }
+              </div>
+              <CardTable setSort={setSort} />
+              {/*{
+                !cards.length ?
+                  <div style={{ fontWeight: "bold", fontSize: "30px", textAlign: "center", paddingTop: "40px" }}>😮 No
+                    cards</div> : <CardTable setSort={setSort} />
+              }*/}
+              <TablePagination
+                numberOfDisplayed={pageCount}
+                setNumberOfDisplayed={setPageCount}
+                page={page}
+                setPage={setPage}
+                totalCount={cardsTotalCount}
+              />
+            </div>
+          </div>
+      }
+    </>
   );
 };
 

@@ -1,0 +1,100 @@
+@import "../../common/utils/variables";
+
+
+.learn {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 50px;
+
+  &__link {
+    position: absolute;
+    left: -126px;
+    top: 13px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-decoration: none;
+    color: #000000;
+    margin-top: 24px;
+    margin-left: 136px;
+
+    transition: all .2s linear;
+
+    &:hover {
+      color: $base-color-hover;
+    }
+  }
+
+  &__title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+    padding-top: 35px;
+    margin-bottom: 25px;
+  }
+
+  &__container {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    max-width: 440px;
+    margin: 0 auto;
+
+  }
+
+  &__text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    padding-top: 30px;
+    margin-bottom: 13px;
+  }
+
+  &__number {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #000000;
+    opacity: 0.5;
+    margin-bottom: 30px;
+  }
+
+  &__answer {
+    &__text {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 25px;
+    }
+
+    &__fieldset {
+      text-align: left;
+      margin: 0;
+      border: 1px solid #e56200;
+    }
+
+    &__legend {
+      font-weight: 400;
+      font-size: 18px;
+    }
+
+    &__label {
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    &__wrapper {
+      text-align: center;
+    }
+
+    &__input {
+      accent-color: #e56200;
+      width: 15px;
+      height: 15px;
+      margin-right: 10px;
+    }
+  }
+}

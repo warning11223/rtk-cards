@@ -10,6 +10,8 @@ import { toast } from "react-toastify";
 import { selectPacks } from "features/packs/packsSelectors";
 import { PackModal } from "features/components/PackModal/PackModal";
 import { DeleteModal } from "features/components/DeleteModal/DeleteModal";
+import { deletePackHandler, updatePackHandler } from "common/utils";
+import { Link } from "react-router-dom";
 
 type Props = {
   id: string
@@ -19,46 +21,26 @@ type Props = {
 export const TableActions: React.FC<Props> = ({ myCard, id }) => {
   const packs = useAppSelector(selectPacks);
   const dispatch = useAppDispatch();
-  const currentPack = packs.find(item => item._id === id)
+  const currentPack = packs.find(item => item._id === id);
 
-
-  const deletePackHandler = () => {
-    dispatch(packsThunks.deletePack(id))
-      .unwrap()
-      .then(res => {
-        dispatch(packsThunks.getPacks({}));
-        toast.success("Pack deleted");
-      })
-      .catch(err => {
-        toast.error(err.e.response.data.error);
-      });
+  const updateHandler = (text: string) => {
+    updatePackHandler({ id, dispatch, text });
   };
 
-  const updatePackHandler = (text: string) => {
-    dispatch(packsThunks.updatePack({
-      cardsPack: {
-        _id: id,
-        name: text,
-      }
-    }))
-      .unwrap()
-      .then(res => {
-        dispatch(packsThunks.getPacks({}));
-        toast.success("Pack updated");
-      })
-      .catch(err => {
-        toast.error(err.e.response.data.error);
-      });
+  const deleteHandler = () => {
+    deletePackHandler({ id, dispatch });
   };
 
   return (
     <Box>
-      <IconButton size={"small"} disabled={!currentPack?.cardsCount}>
-        <SchoolIcon />
-      </IconButton>
+      <Link to={`/learn/${currentPack?._id}`}>
+        <IconButton size={"small"} disabled={!currentPack?.cardsCount}>
+          <SchoolIcon />
+        </IconButton>
+      </Link>
       {
         myCard &&
-        <PackModal callback={updatePackHandler} name={"Edit"} packName={currentPack?.name}>
+        <PackModal callback={updateHandler} name={"Edit"} packName={currentPack?.name}>
           <IconButton size={"small"}>
             <BorderColorIcon />
           </IconButton>
@@ -66,7 +48,7 @@ export const TableActions: React.FC<Props> = ({ myCard, id }) => {
       }
       {
         myCard &&
-        <DeleteModal callback={deletePackHandler}>
+        <DeleteModal callback={deleteHandler}>
           <IconButton size={"small"}>
             <DeleteIcon />
           </IconButton>

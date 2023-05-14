@@ -11,13 +11,15 @@ import { Loader } from "components/Loader/Loader";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton/IconButton";
 import { MorePopup } from "features/components/MorePopup/MorePopup";
+import { selectPacks } from "features/packs/packsSelectors";
 
 type Props = {
   card: Card[]
   myCard?: boolean
+  packId: string | undefined
 }
 
-export const CurrentCard: React.FC<Props> = ({ card, myCard }) => {
+export const CurrentCard: React.FC<Props> = ({ card, myCard, packId }) => {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const loading = useAppSelector(selectAuthLoading);
 
@@ -39,16 +41,13 @@ export const CurrentCard: React.FC<Props> = ({ card, myCard }) => {
                   </IconButton>
                 </div>
                 {
-                  visiblePopup && <MorePopup />
+                  visiblePopup && <MorePopup packId={packId} setVisiblePopup={setVisiblePopup} />
                 }
               </>
             }
           </div>
       }
-
-      {
-        !card[0].cardsCount ? <EmptyCard id={card[0]._id}/> : <CompletedCard id={card[0]._id} myCard={myCard}/>
-      }
+      <CompletedCard id={card[0]._id} myCard={myCard} />
     </div>
   );
 };

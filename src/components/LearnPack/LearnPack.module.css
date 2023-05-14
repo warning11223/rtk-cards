@@ -1,0 +1,82 @@
+.learn {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+.learn__link {
+  position: absolute;
+  left: -126px;
+  top: 13px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-decoration: none;
+  color: #000000;
+  margin-top: 24px;
+  margin-left: 136px;
+  transition: all 0.2s linear;
+}
+.learn__link:hover {
+  color: #e56200;
+}
+.learn__title {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 27px;
+  color: #000000;
+  padding-top: 35px;
+  margin-bottom: 25px;
+}
+.learn__container {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  max-width: 440px;
+  margin: 0 auto;
+}
+.learn__text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  padding-top: 30px;
+  margin-bottom: 13px;
+}
+.learn__number {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #000000;
+  opacity: 0.5;
+  margin-bottom: 30px;
+}
+.learn__answer__text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 25px;
+}
+.learn__answer__fieldset {
+  text-align: left;
+  margin: 0;
+  border: 1px solid #e56200;
+}
+.learn__answer__legend {
+  font-weight: 400;
+  font-size: 18px;
+}
+.learn__answer__label {
+  font-size: 18px;
+  cursor: pointer;
+}
+.learn__answer__wrapper {
+  text-align: center;
+}
+.learn__answer__input {
+  accent-color: #e56200;
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+/*# sourceMappingURL=LearnPack.module.css.map */

@@ -11,8 +11,7 @@ type Props = {
 
 const StarRating: React.FC<Props> = ({ grade, id }) => {
   const dispatch = useAppDispatch();
-  const [rating, setRating] = useState(0);
-  const [hover, setHover] = useState(0);
+  const [rating, setRating] = useState(grade);
   console.log(grade);
   return (
     <div>
@@ -38,10 +37,10 @@ const StarRating: React.FC<Props> = ({ grade, id }) => {
           return <GradeRoundedIcon
             key={index}
             style={{ cursor: "pointer" }}
-            color={`${ratingValue <= (grade || hover) ? "warning" : "disabled"}`}
-            onClick={onGradeCardHandler}
+            color={`${ratingValue <= grade ? "warning" : "disabled"}`}
+            /*onClick={onGradeCardHandler}
             onMouseEnter={() => setHover(index + 1)}
-            onMouseLeave={() => setHover(0)}
+            onMouseLeave={() => setHover(0)}*/
           />;
         })
       }

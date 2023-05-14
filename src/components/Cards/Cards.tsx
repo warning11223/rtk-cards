@@ -31,7 +31,11 @@ export const Cards = () => {
         Back to Packs List
       </Link>
       {
-        card.length ? <CurrentCard card={card} myCard={card[0].user_id === userId} /> : <LinearProgress color={"warning"} />
+        card.length ? <CurrentCard
+          card={card}
+          myCard={card[0].user_id === userId}
+          packId={id}
+        /> : <LinearProgress color={"warning"} />
       }
     </div>
   );
