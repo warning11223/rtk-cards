@@ -33,9 +33,9 @@ const slice = createSlice({
     setError: (state, action: PayloadAction<{ error: string | null }>) => {
       state.error = action.payload.error;
     },
-   /* setLoading: (state, action: PayloadAction<{ loading: string }>) => {
-      state.loading = action.payload.loading;
-    },*/
+    // setLoading: (state, action: PayloadAction<{ loading: string }>) => {
+    //   state.loading = action.payload.loading;
+    // },
     setPassword: (state) => {
       state.passwordWasChanged = true;
     }

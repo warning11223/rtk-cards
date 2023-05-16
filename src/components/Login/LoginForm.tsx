@@ -4,8 +4,8 @@ import { authThunks } from "features/auth/authSlice";
 import s from "./LoginForm.module.scss";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "common/hooks/useAppDispatch";
 import { toast } from "react-toastify";
+import { useActions } from "common/hooks/useActions";
 
 type Inputs = {
   email: string,
@@ -14,9 +14,9 @@ type Inputs = {
 };
 
 export const LoginForm = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { register, handleSubmit, formState } = useForm<Inputs>();
+  const { login } = useActions(authThunks);
 
   const onSubmit: SubmitHandler<Inputs> = data => {
     const payload = {
@@ -24,7 +24,8 @@ export const LoginForm = () => {
       password: data.password,
       rememberMe: data.checkbox
     };
-    dispatch(authThunks.login(payload))
+
+    login(payload)
       .unwrap()
       .then(res => {
         toast.success("You have successfully logged in");

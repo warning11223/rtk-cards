@@ -16,8 +16,6 @@ export const Cards = () => {
   const [card, setCard] = useState<Card[]>([]);
   const { id } = useParams();
 
-
-
   useEffect(() => {
     const card = cardsPack.filter(item => item._id === id);
     setCard(card);
@@ -31,11 +29,12 @@ export const Cards = () => {
         Back to Packs List
       </Link>
       {
-        card.length ? <CurrentCard
-          card={card}
-          myCard={card[0].user_id === userId}
-          packId={id}
-        /> : <LinearProgress color={"warning"} />
+        card.length ?
+          <CurrentCard
+            card={card}
+            myCard={card[0].user_id === userId}
+            packId={id}
+          /> : <LinearProgress color={"warning"} />
       }
     </div>
   );

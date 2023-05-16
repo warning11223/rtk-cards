@@ -4,16 +4,16 @@ import Button from "@mui/joy/Button";
 import Divider from "@mui/joy/Divider";
 import Modal from "@mui/joy/Modal";
 import ModalDialog from "@mui/joy/ModalDialog";
-import DeleteForever from "@mui/icons-material/DeleteForever";
 import WarningRoundedIcon from "@mui/icons-material/WarningRounded";
 import Typography from "@mui/joy/Typography";
 
 type Props = {
   children: React.ReactNode
   callback: () => void
+  name: string | undefined
 }
 
-export const DeleteModal: React.FC<Props> = ({ children, callback }) => {
+export const DeleteModal: React.FC<Props> = ({ children, callback, name }) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const deleteHandler = () => {
@@ -40,7 +40,7 @@ export const DeleteModal: React.FC<Props> = ({ children, callback }) => {
           </Typography>
           <Divider />
           <Typography id="alert-dialog-modal-description" textColor="text.tertiary">
-            Are you sure you want to delete your pack?
+            Are you sure you want to delete <span style={{color: 'red', fontSize: '15px', fontWeight: 'bold'}}>{name}</span>?
           </Typography>
           <Box sx={{ display: "flex", gap: 1, justifyContent: "flex-end", pt: 2 }}>
             <Button variant="plain" color="neutral" onClick={() => setOpen(false)}>

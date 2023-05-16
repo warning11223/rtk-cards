@@ -14,9 +14,10 @@ import { useNavigate } from "react-router-dom";
 type Props = {
   packId: string | undefined
   setVisiblePopup: (visible: boolean) => void
+  name: string
 }
 
-export const MorePopup: React.FC<Props> = ({ packId, setVisiblePopup }) => {
+export const MorePopup: React.FC<Props> = ({ packId, setVisiblePopup, name }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -44,23 +45,27 @@ export const MorePopup: React.FC<Props> = ({ packId, setVisiblePopup }) => {
       });
   };
 
+  const learnHandler = () => {
+    navigate(`/learn/${packId}`);
+  };
+
   return (
     <div className={s.morePopup}>
-      <PackModal callback={editHandler} name={"Edit"}>
+      <PackModal callback={editHandler} name={"Edit"} packName={name}>
         <div className={s.morePopup__wrapper}>
           <BorderColorIcon color={"warning"} />
           <span>Edit</span>
         </div>
       </PackModal>
 
-      <DeleteModal callback={deleteHandler}>
+      <DeleteModal callback={deleteHandler} name={name}>
         <div className={s.morePopup__wrapper}>
           <DeleteIcon color={"warning"} />
           <span>Delete</span>
         </div>
       </DeleteModal>
 
-      <div className={s.morePopup__wrapper}>
+      <div className={s.morePopup__wrapper} onClick={learnHandler}>
         <SchoolIcon color={"warning"} />
         <span>Learn</span>
       </div>

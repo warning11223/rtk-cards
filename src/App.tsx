@@ -25,9 +25,6 @@ function App() {
       .then(res => {
         toast.success("You have successfully logged in");
       })
-      .catch(err => {
-        toast.error(err.e.response.data.error);
-      });
   }, []);
 
   return (

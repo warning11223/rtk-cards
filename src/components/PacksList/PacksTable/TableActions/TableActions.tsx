@@ -5,8 +5,6 @@ import IconButton from "@mui/material/IconButton/IconButton";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAppDispatch, useAppSelector } from "common/hooks";
-import { packsThunks } from "features/packs/packsSlice";
-import { toast } from "react-toastify";
 import { selectPacks } from "features/packs/packsSelectors";
 import { PackModal } from "features/components/PackModal/PackModal";
 import { DeleteModal } from "features/components/DeleteModal/DeleteModal";
@@ -48,7 +46,7 @@ export const TableActions: React.FC<Props> = ({ myCard, id }) => {
       }
       {
         myCard &&
-        <DeleteModal callback={deleteHandler}>
+        <DeleteModal callback={deleteHandler} name={currentPack?.name}>
           <IconButton size={"small"}>
             <DeleteIcon />
           </IconButton>

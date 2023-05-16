@@ -11,14 +11,17 @@ import { selectCards, selectCardsTotalCount } from "features/cards/cardsSelector
 import { LearnToCardBtn } from "features/components/LearnToCardBtn/LearnToCardBtn";
 import { AddToCardBtn } from "features/components/AddToCardBtn/AddToCardBtn";
 import EmptyCard from "components/Cards/CurrentCard/EmptyCard/EmptyCard";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   id: string
   myCard?: boolean
+  packId: string | undefined
 }
 
-export const CompletedCard: React.FC<Props> = ({ id, myCard }) => {
+export const CompletedCard: React.FC<Props> = ({ id, myCard, packId }) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const cardsTotalCount = useAppSelector(selectCardsTotalCount);
   const [sort, setSort] = useState("0grade");
   const [search, setSearch] = useState("");
@@ -60,20 +63,27 @@ export const CompletedCard: React.FC<Props> = ({ id, myCard }) => {
       });
   };
 
+  const learnHandler = () => {
+    navigate(`/learn/${packId}`);
+  };
+
+  if (!cards.length && !myCard) {
+    return <div style={{fontSize: "40px", fontWeight: "bold"}}>No cards ☹️</div>
+  }
+
   return (
     <>
       {
-        !cards.length ?
-          <EmptyCard addCardHandler={addCardHandler} /> :
-          <div className={s.completed}>
+        !cards.length
+          ? <EmptyCard addCardHandler={addCardHandler} />
+          : <div className={s.completed}>
             <div className={s.completed__header}>
               <div className={s.completed__search}>
                 <TableSearch search={search} setSearch={setSearch} />
                 {
                   myCard
                     ? <AddToCardBtn onClickCallback={addCardHandler} />
-                    : <LearnToCardBtn onClickCallback={() => {
-                    }} />
+                    : <LearnToCardBtn onClickCallback={learnHandler} />
                 }
               </div>
               <CardTable setSort={setSort} />

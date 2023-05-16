@@ -78,7 +78,7 @@ export const CardTableRow: React.FC<Props> = ({ card }) => {
           }
           {
             myCard &&
-            <DeleteModal callback={deleteCardHandler}>
+            <DeleteModal callback={deleteCardHandler} name={card.question}>
               <IconButton size={"small"}>
                 <DeleteIcon />
               </IconButton>

@@ -6,12 +6,14 @@ import { Navigate } from "react-router-dom";
 
 import s from "./Login.module.scss";
 import { useAppSelector } from "common/hooks/useAppSelector";
+import { selectAuthLoading, selectIsAuthorized } from "features/auth/authSelectors";
 
 export const Login = () => {
-  const { loading, isAuthorized } = useAppSelector(state => state.auth);
+  const loading = useAppSelector(selectAuthLoading);
+  const isAuthorized = useAppSelector(selectIsAuthorized);
 
   if (isAuthorized) {
-    return <Navigate to={"/packs-list"} />
+    return <Navigate to={"/packs-list"} />;
   }
 
   return (

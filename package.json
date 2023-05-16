@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "homepage": "https://warning11223.github.io/rtk-cards",
   "private": true,
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
+  },
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",

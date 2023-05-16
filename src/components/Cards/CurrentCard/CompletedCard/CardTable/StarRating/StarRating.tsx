@@ -12,14 +12,16 @@ type Props = {
 const StarRating: React.FC<Props> = ({ grade, id }) => {
   const dispatch = useAppDispatch();
   const [rating, setRating] = useState(grade);
+
   console.log(grade);
+
   return (
     <div>
       {
         [...Array(5)].map((item, index) => {
           const ratingValue = index + 1;
 
-          const onGradeCardHandler = () => {
+          /*const onGradeCardHandler = () => {
             setRating(index + 1);
             dispatch(cardsThunks.gradeCard({
               grade: rating,
@@ -32,11 +34,10 @@ const StarRating: React.FC<Props> = ({ grade, id }) => {
               .catch(err => {
                 toast.error(err.e.response.data.error);
               });
-          };
+          };*/
 
           return <GradeRoundedIcon
             key={index}
-            style={{ cursor: "pointer" }}
             color={`${ratingValue <= grade ? "warning" : "disabled"}`}
             /*onClick={onGradeCardHandler}
             onMouseEnter={() => setHover(index + 1)}

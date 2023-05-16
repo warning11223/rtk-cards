@@ -41,13 +41,18 @@ export const CurrentCard: React.FC<Props> = ({ card, myCard, packId }) => {
                   </IconButton>
                 </div>
                 {
-                  visiblePopup && <MorePopup packId={packId} setVisiblePopup={setVisiblePopup} />
+                  visiblePopup &&
+                  <MorePopup
+                    packId={packId}
+                    setVisiblePopup={setVisiblePopup}
+                    name={card[0].name}
+                  />
                 }
               </>
             }
           </div>
       }
-      <CompletedCard id={card[0]._id} myCard={myCard} />
+      <CompletedCard id={card[0]._id} myCard={myCard} packId={packId} />
     </div>
   );
 };

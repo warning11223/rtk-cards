@@ -1,4 +1,3 @@
-import Button from "@mui/material/Button/Button";
 import Typography from "@mui/material/Typography/Typography";
 import React from "react";
 
@@ -10,18 +9,20 @@ import { selectAuthLoading } from "features/auth/authSelectors";
 import { packsThunks } from "features/packs/packsSlice";
 import { toast } from "react-toastify";
 import { PackModal } from "features/components/PackModal/PackModal";
+import { useActions } from "common/hooks/useActions";
 
 export const PacksListHeader = () => {
   const dispatch = useAppDispatch();
   const loading = useAppSelector(selectAuthLoading);
+  const { createPack } = useActions(packsThunks);
 
   const addCardHandler = (text: string, checked: boolean) => {
-    dispatch(packsThunks.createPack({
+    createPack({
       cardsPack: {
         name: text,
-        private: checked,
+        private: checked
       }
-    }))
+    })
       .unwrap()
       .then(res => {
         dispatch(packsThunks.getPacks({}));
@@ -30,6 +31,7 @@ export const PacksListHeader = () => {
       .catch(err => {
         toast.error(err.e.response.data.error);
       });
+
   };
 
   return (
@@ -41,12 +43,6 @@ export const PacksListHeader = () => {
       <PackModal callback={addCardHandler} name={"Add"}>
         Add new pack
       </PackModal>
-      {/*<Button
-        variant="contained"
-        color={"warning"}
-        sx={{ borderRadius: "2rem" }}
-        onClick={addCardHandler}
-      >Add new pack</Button>*/}
     </div>
   );
 };
