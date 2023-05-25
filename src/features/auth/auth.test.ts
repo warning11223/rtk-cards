@@ -25,7 +25,8 @@ beforeEach(() => {
     token: "",
     rememberMe: true,
     tokenDeathTime: 1000,
-    verified: false
+    verified: false,
+    avatar: ''
   };
 });
 

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import avatar from "../../assets/img/avatar.svg";
 import edit from "../../assets/img/edit.svg";
 import logout from "../../assets/img/logout.svg";
-import editAvatar from "../../assets/img/editAvatar.svg";
 import arrowLeft from "../../assets/img/arrow-left.svg";
 
 import s from "./Profile.module.scss";
@@ -14,6 +12,7 @@ import { useAppSelector } from "common/hooks/useAppSelector";
 import { toast } from "react-toastify";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { selectAuthLoading, selectProfile } from "features/auth/authSelectors";
+import { InputTypeFile } from "components/Profile/InputTypeFile/InputTypeFile";
 
 type InputType = {
   name: string
@@ -40,7 +39,7 @@ export const Profile = () => {
 
   const saveHandler: SubmitHandler<InputType> = data => {
     if (data.name.length < 4) {
-      return
+      return;
     }
     setEditable(false);
     if (name) {
@@ -69,8 +68,7 @@ export const Profile = () => {
         <h1 className={s.profile__title}>Personal Information</h1>
 
         <div className={s.profile__avatarContainer}>
-          <img className={s.profile__avatar} src={avatar} alt="avatar" />
-          <img className={s.profile__editAvatar} src={editAvatar} alt="editAvatar" />
+          <InputTypeFile profileAvatar={profile?.avatar}/>
         </div>
 
         <div className={s.profile__editContainer}>

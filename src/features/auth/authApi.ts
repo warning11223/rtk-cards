@@ -6,26 +6,26 @@ export const authApi = {
     return instance.post<RegisterResponseType>("auth/register", arg);
   },
   login: (arg: ArgLoginType) => {
-    return instance.post<ProfileType>("auth/login", arg)
+    return instance.post<ProfileType>("auth/login", arg);
   },
   logout: () => {
-    return instance.delete<Response>('/auth/me', {})
+    return instance.delete<Response>("/auth/me", {});
   },
   updateMe: (arg: UpdateMe) => {
-    return instance.put<UpdateMeResponse>('/auth/me', arg)
+    return instance.put<UpdateMeResponse>("/auth/me", arg);
   },
   forgotPassword: (arg: ForgotPasswordType) => {
-    return axios.post<Response>(`https://neko-back.herokuapp.com/2.0/auth/forgot`, arg)
+    return axios.post<Response>(`https://neko-back.herokuapp.com/2.0/auth/forgot`, arg);
   },
   setNewPassword: (arg: SetNewPassword) => {
-    return instance.post<Response>('/auth/set-new-password', arg)
+    return instance.post<Response>("/auth/set-new-password", arg);
   },
   authMe: () => {
-    return instance.post<ProfileType>('/auth/me', {})
+    return instance.post<ProfileType>("/auth/me", {});
   }
 };
 
-export type ArgRegisterType = Omit<ArgLoginType, 'rememberMe'>
+export type ArgRegisterType = Omit<ArgLoginType, "rememberMe">
 
 export type ArgLoginType = {
   email: string
@@ -49,6 +49,7 @@ export type RegisterResponseType = {
 };
 
 export type ProfileType = {
+  avatar: string
   created: string
   email: string
   isAdmin: boolean
@@ -69,12 +70,12 @@ export type ForgotPasswordType = {
   message: string
 }
 
-export type Response =  {
+export type Response = {
   info: string
   error: string
 }
 
-export type SetNewPassword =  {
+export type SetNewPassword = {
   password: string
   resetPasswordToken: string
 }
@@ -85,7 +86,23 @@ export type UpdateMe = {
 }
 
 export type UpdateMeResponse = {
-  updatedUser: ProfileType
-  error?: string
+  token: string
+  error: string
+  tokenDeathTime: number
+  updatedUser: {
+    avatar: string
+    created: string
+    email: string
+    isAdmin: boolean
+    name: string
+    publicCardPacksCount: number
+    rememberMe: boolean
+    token: string
+    tokenDeathTime: number
+    updated: string
+    verified: boolean
+    __v: number
+    _id: string
+  }
 }
 
