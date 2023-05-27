@@ -12,6 +12,7 @@ import { LearnToCardBtn } from "features/components/LearnToCardBtn/LearnToCardBt
 import { AddToCardBtn } from "features/components/AddToCardBtn/AddToCardBtn";
 import EmptyCard from "components/Cards/CurrentCard/EmptyCard/EmptyCard";
 import { useNavigate } from "react-router-dom";
+import { CreateRequest } from "features/cards/cardsApi";
 
 type Props = {
   id: string
@@ -43,16 +44,20 @@ export const CompletedCard: React.FC<Props> = ({ id, myCard, packId }) => {
       });
   }, [sort, search, page, pageCount]);
 
-  const addCardHandler = (question: string, answer: string) => {
-    const card = {
-      grade: 0,
-      shots: 0,
-      question,
-      answer,
-      cardsPack_id: id
+  const addCardHandler = (question: string, answer: string, answerImg: string, questionImg: string) => {
+    const card: CreateRequest = {
+      card: {
+        grade: 0,
+        shots: 0,
+        question,
+        answer,
+        cardsPack_id: id,
+        questionImg,
+        answerImg
+      }
     };
 
-    dispatch(cardsThunks.createCard({ card }))
+    dispatch(cardsThunks.createCard({ card: card.card }))
       .unwrap()
       .then(res => {
         toast.success("New card added");

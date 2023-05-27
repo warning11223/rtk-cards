@@ -16,7 +16,6 @@ import { Loader } from "components/Loader/Loader";
 import { Loading } from "features/auth/authSlice";
 import { getCard } from "common/utils/getCard";
 
-
 export const LearnPack = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
@@ -36,14 +35,25 @@ export const LearnPack = () => {
     shots: 0,
     user_id: "",
     created: "",
-    updated: ""
+    updated: "",
+    rating: 0,
+    type: "",
+    questionImg: "",
+    more_id: "",
+    __v: 0,
+    comments: "",
+    answerImg: ""
   });
-
+  console.log(card.shots);
   useEffect(() => {
     if (first) {
       dispatch(cardsThunks.getCards({
         cardsPack_id: id!
-      }));
+      }))
+        .unwrap()
+        .then(res => {
+
+        });
       setFirst(false);
     }
 
@@ -61,6 +71,7 @@ export const LearnPack = () => {
         .unwrap()
         .then(res => {
           toast.success("Answer taken into account");
+
         })
         .catch(err => {
           toast.error(err.e.response.data.error);
@@ -73,7 +84,7 @@ export const LearnPack = () => {
   };
 
   if (loading === Loading.Loading) {
-    return <Loader />
+    return <Loader />;
   }
 
   return (
@@ -85,10 +96,14 @@ export const LearnPack = () => {
       <h3 className={s.learn__title}>Learn "{currentPack[0].name}" pack</h3>
 
       <div className={s.learn__container}>
-        <p className={s.learn__text}>
+        <div className={s.learn__text}>
           <span style={{ fontWeight: "bold" }}>Question: </span>
-          {card.question}
-        </p>
+          {
+            card.questionImg ?
+              <img src={card.questionImg} alt="questionImg" style={{ height: "150px", width: "150px" }} /> :
+              <p>{card.question}</p>
+          }
+        </div>
         <p className={s.learn__number}>
           Number of answers per question:
           <span style={{ fontWeight: "bold", fontSize: "16px" }}>{card.shots}</span>
@@ -104,7 +119,7 @@ export const LearnPack = () => {
         }
 
         {
-          showAnswer && <ShowAnswer onNext={onNext} answer={card.answer} />
+          showAnswer && <ShowAnswer onNext={onNext} card={card} />
         }
       </div>
 

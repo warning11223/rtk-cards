@@ -6,13 +6,15 @@ type Args = {
   text?: string
   dispatch: AppDispatch
   id: string
+  deckCover?: string
 }
 
-export const updatePackHandler = ({ text, id, dispatch }: Args) => {
+export const updatePackHandler = ({ text, id, dispatch, deckCover }: Args) => {
   dispatch(packsThunks.updatePack({
     cardsPack: {
       _id: id,
       name: text!,
+      deckCover
     }
   }))
     .unwrap()

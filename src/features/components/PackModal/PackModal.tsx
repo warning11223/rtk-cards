@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Button from "@mui/joy/Button";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
@@ -8,19 +9,29 @@ import ModalDialog from "@mui/joy/ModalDialog";
 import Stack from "@mui/joy/Stack";
 import Add from "@mui/icons-material/Add";
 import Typography from "@mui/joy/Typography";
-import { useState } from "react";
+
+import listIcon from "../../../assets/img/list-icon.png";
+import { EditImage } from "features/components/PackModal/EditImage";
 
 type Props = {
   children: React.ReactNode
-  callback: (text: string, checked: boolean) => void
+  callback: (text: string, checked: boolean, deckCover?: string | undefined) => void
+  setVisiblePopup?: (visible: boolean) => void
   name: string
   packName?: string | undefined
+  deckCover?: string
 }
 
-export const PackModal: React.FC<Props> = ({ children, callback, name, packName }) => {
+export const PackModal: React.FC<Props> = ({ children, callback, name, packName, deckCover, setVisiblePopup }) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [text, setText] = useState(name === "Edit" ? packName : "");
   const [checked, setChecked] = useState(false);
+  const [cover, setCover] = useState(deckCover ? deckCover : listIcon);
+
+  const closeHandler = () => {
+    setOpen(false);
+    setVisiblePopup && setVisiblePopup(false);
+  };
 
   return (
     <React.Fragment>
@@ -39,7 +50,7 @@ export const PackModal: React.FC<Props> = ({ children, callback, name, packName 
             </span>
       }
 
-      <Modal open={open} onClose={() => setOpen(false)}>
+      <Modal open={open} onClose={closeHandler}>
         <ModalDialog
           aria-labelledby="basic-modal-dialog-title"
           aria-describedby="basic-modal-dialog-description"
@@ -57,12 +68,17 @@ export const PackModal: React.FC<Props> = ({ children, callback, name, packName 
             onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
               event.preventDefault();
               setOpen(false);
-              callback(text ? text : '', checked);
+              callback(text ? text : "", checked, cover);
               setText("");
               setChecked(false);
+              setCover(listIcon);
+              setVisiblePopup && setVisiblePopup(false);
             }}
           >
             <Stack spacing={2}>
+
+              <EditImage deckCover={deckCover} cover={cover} setCover={setCover} />
+
               <FormControl>
                 <FormLabel>Name Pack</FormLabel>
                 <Input

@@ -15,6 +15,7 @@ import { useAppDispatch } from "common/hooks/useAppDispatch";
 import { toast } from "react-toastify";
 import { PrivateRoutes } from "features/PrivateRoutes";
 import { LearnPack } from "components/LearnPack/LearnPack";
+import { Page404 } from "components/Page404/Page404";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -46,6 +47,7 @@ function App() {
         <Route path={"/login"} element={<Login />} />
         <Route path={"/register"} element={<Register />} />
         <Route path={"/set-new-password/:token"} element={<SetNewPassword />} />
+        <Route path={"*"} element={<Page404 />} />
       </Routes>
     </div>
   );

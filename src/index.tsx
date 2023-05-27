@@ -6,7 +6,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "index.scss";
 import 'react-toastify/dist/ReactToastify.css';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import { GlobalError } from "common/GlobalError/GlobalError";
 
 const container = document.getElementById("root")!;
@@ -14,10 +14,10 @@ const root = createRoot(container);
 
 root.render(
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <App />
         <GlobalError />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
 );
 

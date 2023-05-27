@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Button from "@mui/joy/Button";
 import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
@@ -8,11 +9,12 @@ import ModalDialog from "@mui/joy/ModalDialog";
 import Stack from "@mui/joy/Stack";
 import Add from "@mui/icons-material/Add";
 import Typography from "@mui/joy/Typography";
-import { useState } from "react";
+import { ModalSelect } from "features/components/ModalSelect/ModalSelect";
+import { EditImage } from "features/components/PackModal/EditImage";
 
 type Props = {
   children: React.ReactNode
-  callback: (question: string, answer: string) => void
+  callback: (question: string, answer: string, answerCover: string, questionCover: string) => void
   title: string
   answerValue?: string
   questionValue?: string
@@ -22,6 +24,9 @@ export const CardModal: React.FC<Props> = ({ children, callback, title, question
   const [open, setOpen] = React.useState<boolean>(false);
   const [question, setQuestion] = useState(questionValue ? questionValue : "");
   const [answer, setAnswer] = useState(answerValue ? answerValue : "");
+  const [chosenValue, setChosenValue] = useState("");
+  const [answerCover, setAnswerCover] = useState("");
+  const [questionCover, setQuestionCover] = useState("");
 
   return (
     <React.Fragment>
@@ -53,30 +58,49 @@ export const CardModal: React.FC<Props> = ({ children, callback, title, question
           <form
             onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
               event.preventDefault();
-              callback(question, answer);
+              callback(question, answer, answerCover, questionCover);
               setOpen(false);
             }}
           >
             <Stack spacing={2}>
-              <FormControl>
-                <FormLabel>Question</FormLabel>
-                <Input
-                  value={question}
-                  onChange={e => setQuestion(e.currentTarget.value)}
-                  color={"warning"}
-                  autoFocus
-                  required
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel>Answer</FormLabel>
-                <Input
-                  value={answer}
-                  onChange={e => setAnswer(e.currentTarget.value)}
-                  color={"warning"}
-                  required
-                />
-              </FormControl>
+
+              <ModalSelect value={chosenValue} setValue={setChosenValue} />
+              {
+                chosenValue === "text" &&
+                <FormControl>
+                  <FormLabel>Question</FormLabel>
+                  <Input
+                    value={question}
+                    onChange={e => setQuestion(e.currentTarget.value)}
+                    color={"warning"}
+                    autoFocus
+                    required
+                  />
+                </FormControl>
+              }
+              {
+                chosenValue === 'text' &&
+                <FormControl>
+                  <FormLabel>Answer</FormLabel>
+                  <Input
+                    value={answer}
+                    onChange={e => setAnswer(e.currentTarget.value)}
+                    color={"warning"}
+                    required
+                  />
+                </FormControl>
+              }
+
+              {
+                chosenValue === "image" &&
+                <EditImage setCover={setAnswerCover} cover={answerCover} name={"answer"}/>
+              }
+              {
+                chosenValue === "image" &&
+                <EditImage setCover={setQuestionCover} cover={questionCover} name={"question"}/>
+              }
+
+
               <Button type="submit" color={"warning"}>{title} card</Button>
             </Stack>
           </form>

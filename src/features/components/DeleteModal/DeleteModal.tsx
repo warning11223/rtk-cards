@@ -11,20 +11,27 @@ type Props = {
   children: React.ReactNode
   callback: () => void
   name: string | undefined
+  setVisiblePopup?: (visible: boolean) => void
 }
 
-export const DeleteModal: React.FC<Props> = ({ children, callback, name }) => {
+export const DeleteModal: React.FC<Props> = ({ children, callback, name, setVisiblePopup }) => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const deleteHandler = () => {
     callback();
     setOpen(false);
+    setVisiblePopup && setVisiblePopup(false);
+  };
+
+  const closeHandler = () => {
+    setOpen(false);
+    setVisiblePopup && setVisiblePopup(false);
   };
 
   return (
     <React.Fragment>
       <span onClick={() => setOpen(true)}>{children}</span>
-      <Modal open={open} onClose={() => setOpen(false)}>
+      <Modal open={open} onClose={closeHandler}>
         <ModalDialog
           variant="outlined"
           role="alertdialog"
@@ -40,10 +47,11 @@ export const DeleteModal: React.FC<Props> = ({ children, callback, name }) => {
           </Typography>
           <Divider />
           <Typography id="alert-dialog-modal-description" textColor="text.tertiary">
-            Are you sure you want to delete <span style={{color: 'red', fontSize: '15px', fontWeight: 'bold'}}>{name}</span>?
+            Are you sure you want to delete <span
+            style={{ color: "red", fontSize: "15px", fontWeight: "bold" }}>{name}</span>?
           </Typography>
           <Box sx={{ display: "flex", gap: 1, justifyContent: "flex-end", pt: 2 }}>
-            <Button variant="plain" color="neutral" onClick={() => setOpen(false)}>
+            <Button variant="plain" color="neutral" onClick={closeHandler}>
               Cancel
             </Button>
             <Button variant="solid" color="danger" onClick={deleteHandler}>

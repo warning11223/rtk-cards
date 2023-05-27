@@ -33,7 +33,7 @@ export const CardTable: React.FC<Props> = ({ setSort }) => {
         <TableHead>
           <TableRow sx={{ backgroundColor: "#EFEFEF" }}>
             <TableCell>Question</TableCell>
-            <TableCell align="right">Answer</TableCell>
+            <TableCell align="center">Answer</TableCell>
             <TableCell align="right">
               Last Updated
               <IconButton onClick={onSortHandler}>

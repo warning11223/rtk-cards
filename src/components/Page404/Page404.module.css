@@ -1,0 +1,38 @@
+.page404 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 70px;
+  padding-top: 100px;
+}
+.page404__title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 61px;
+  margin: 0;
+  padding: 0;
+}
+.page404__text {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 36px;
+  margin-bottom: 36px;
+}
+.page404__btn {
+  background: #ff7d0b;
+  border: none;
+  padding: 8px 28px;
+  box-shadow: 0px 4px 18px rgba(54, 110, 255, 0.35), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s linear;
+}
+.page404__btn:hover {
+  background: #e56200;
+}
+
+/*# sourceMappingURL=Page404.module.css.map */

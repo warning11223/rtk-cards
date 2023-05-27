@@ -24,7 +24,14 @@ describe("cardsReducer", () => {
           user_id: 'string',
           created: 'string',
           updated: 'string',
-          _id: 'string'
+          _id: 'string',
+          __v: 0,
+          answerImg: '',
+          comments: '',
+          more_id: '',
+          questionImg: '',
+          type: '',
+          rating: 0
         }
       ],
       cardsTotalCount: 111,
@@ -32,7 +39,14 @@ describe("cardsReducer", () => {
       minGrade: 11,
       pageCount: 11,
       packUserId: "12",
-      maxGrade: 11
+      maxGrade: 11,
+      packCreated: '',
+      packDeckCover: '',
+      packName: '',
+      packPrivate: false,
+      packUpdated: '',
+      token: '',
+      tokenDeathTime: 0
     };
 
     const params: CardRequest = {

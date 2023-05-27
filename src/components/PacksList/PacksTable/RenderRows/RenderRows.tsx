@@ -7,13 +7,14 @@ import { useAppSelector } from "common/hooks";
 import { selectUserId } from "features/auth/authSelectors";
 import { Link } from "react-router-dom";
 
-import s from './RenderRows.module.scss'
+import s from "./RenderRows.module.scss";
+import listIcon from "../../../../assets/img/list-icon.png";
 
 type Props = {
   cards: Card []
 }
 
-export const RenderRows: React.FC<Props> = ({cards}) => {
+export const RenderRows: React.FC<Props> = ({ cards }) => {
   const userId = useAppSelector(selectUserId);
 
   return (
@@ -26,6 +27,7 @@ export const RenderRows: React.FC<Props> = ({cards}) => {
           >
             <TableCell component="th" scope="row">
               <Link to={`/cards/${card._id}`} className={s.rows__link}>
+                <img src={card.deckCover ? card.deckCover : listIcon} alt="listIcon" style={{ width: "57px", height: "36px" }} />
                 {card.name}
               </Link>
             </TableCell>

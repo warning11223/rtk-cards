@@ -4,7 +4,7 @@ import s from "./EmptyCard.module.scss";
 import { AddToCardBtn } from "features/components/AddToCardBtn/AddToCardBtn";
 
 type Props = {
-  addCardHandler: (question: string, answer: string) => void
+  addCardHandler: (question: string, answer: string, answerCover: string, questionCover: string) => void
 }
 
 const EmptyCard: React.FC<Props> = ({ addCardHandler }) => {

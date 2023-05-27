@@ -3,7 +3,6 @@ import TableCell from "@mui/material/TableCell";
 import StarRating from "components/Cards/CurrentCard/CompletedCard/CardTable/StarRating/StarRating";
 import TableRow from "@mui/material/TableRow";
 import { CardType } from "features/cards/cardsApi";
-import { PackModal } from "features/components/PackModal/PackModal";
 import IconButton from "@mui/material/IconButton/IconButton";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { DeleteModal } from "features/components/DeleteModal/DeleteModal";
@@ -17,6 +16,8 @@ import { CardModal } from "features/components/CardModal/CardModal";
 type Props = {
   card: CardType
 }
+
+const gradeStyles = { display: "flex", justifyContent: 'flex-end', alignItems: 'center' };
 
 export const CardTableRow: React.FC<Props> = ({ card }) => {
   const dispatch = useAppDispatch();
@@ -57,17 +58,31 @@ export const CardTableRow: React.FC<Props> = ({ card }) => {
       });
   };
 
+
   return (
     <TableRow
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
     >
-      <TableCell component="th" scope="row">
-        {card.question}
+      <TableCell component="th" scope="row" >
+        {
+          card.questionImg ?
+            <img src={card.questionImg} alt="questionImg" style={{height: '36px'}} /> :
+            <p>{card.question}</p>
+        }
       </TableCell>
-      <TableCell align="right">{card.answer}</TableCell>
-      <TableCell align="right">{card.updated.toString().substring(0, 10)}</TableCell>
-      <TableCell align="right" sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
-        <div>
+      <TableCell align="center">
+        {
+          card.answerImg ?
+            <img src={card.answerImg} alt="answerImg" style={{height: '36px'}} /> :
+            <p>{card.answer}</p>
+        }
+      </TableCell>
+      <TableCell align="right">
+        {card.updated.toString().substring(0, 10)}
+      </TableCell>
+      <TableCell align={"right"} >
+        <div style={myCard ? gradeStyles : {}} >
+          <StarRating grade={card.grade} id={card._id} />
           {
             myCard &&
             <CardModal callback={editCard} title={"Edit"} answerValue={card.answer} questionValue={card.question}>
@@ -85,7 +100,7 @@ export const CardTableRow: React.FC<Props> = ({ card }) => {
             </DeleteModal>
           }
         </div>
-        <StarRating grade={card.grade} id={card._id} />
+
       </TableCell>
     </TableRow>
   );

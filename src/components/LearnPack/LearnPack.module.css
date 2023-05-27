@@ -21,7 +21,7 @@
   color: #e56200;
 }
 .learn__title {
-  font-family: "Montserrat";
+  font-family: "Montserrat", serif;
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
@@ -36,6 +36,11 @@
   margin: 0 auto;
 }
 .learn__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -51,6 +56,11 @@
   margin-bottom: 30px;
 }
 .learn__answer__text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;

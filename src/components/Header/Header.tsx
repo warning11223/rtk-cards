@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "assets/img/logo.svg";
+import logo from "assets/img/logo.png";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "common/hooks/useAppSelector";
 import s from "components/Header/Header.module.scss";
@@ -16,7 +16,9 @@ export const Header = () => {
   return (
     <div className={s.header}>
       <div className={s.header__wrapper}>
-        <img className={s.header__logo} src={logo} alt="logo" />
+        <Link to={"/packs-list"}>
+          <img className={s.header__logo} src={logo} alt="logo" height={50} width={50} />
+        </Link>
         {
           isAuthorized
             ?

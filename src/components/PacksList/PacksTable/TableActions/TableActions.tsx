@@ -21,8 +21,13 @@ export const TableActions: React.FC<Props> = ({ myCard, id }) => {
   const dispatch = useAppDispatch();
   const currentPack = packs.find(item => item._id === id);
 
-  const updateHandler = (text: string) => {
-    updatePackHandler({ id, dispatch, text });
+  const updateHandler = (text: string, checked: boolean, deckCover: string | undefined) => {
+    updatePackHandler({
+      id,
+      dispatch,
+      text,
+      deckCover
+    });
   };
 
   const deleteHandler = () => {
@@ -38,7 +43,12 @@ export const TableActions: React.FC<Props> = ({ myCard, id }) => {
       </Link>
       {
         myCard &&
-        <PackModal callback={updateHandler} name={"Edit"} packName={currentPack?.name}>
+        <PackModal
+          callback={updateHandler}
+          name={"Edit"}
+          packName={currentPack?.name}
+          deckCover={currentPack?.deckCover}
+        >
           <IconButton size={"small"}>
             <BorderColorIcon />
           </IconButton>

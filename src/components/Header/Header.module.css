@@ -11,6 +11,9 @@
   position: relative;
   height: 60px;
 }
+.header__logo {
+  padding-top: 3px;
+}
 .header__btn {
   background: #ff7d0b;
   border: none;

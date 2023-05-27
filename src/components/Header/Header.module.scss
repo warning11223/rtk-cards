@@ -17,6 +17,10 @@
     height: 60px;
   }
 
+  &__logo {
+    padding-top: 3px;
+  }
+
   &__btn {
     background: $base-color;
     border: none;

@@ -16,11 +16,12 @@ export const PacksListHeader = () => {
   const loading = useAppSelector(selectAuthLoading);
   const { createPack } = useActions(packsThunks);
 
-  const addCardHandler = (text: string, checked: boolean) => {
+  const addCardHandler = (text: string, checked: boolean, deckCover: string | undefined) => {
     createPack({
       cardsPack: {
         name: text,
-        private: checked
+        private: checked,
+        deckCover
       }
     })
       .unwrap()

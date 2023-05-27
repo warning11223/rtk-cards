@@ -30,20 +30,22 @@ export type GetPack = {
 }
 
 export type Card = {
-  _id: string
+  cardsCount: number
+  created: string
+  deckCover: string
+  grade: number
+  more_id: string
+  name: string
+  path: string
+  private: boolean
+  rating: number
+  shots: number
+  type: string
+  updated: string
   user_id: string
   user_name: string
-  name: string
-  private: boolean
-  path: string
-  grade: number
-  shots: number
-  cardsCount: number
-  type: string
-  rating: number
-  more_id: string
-  created: string
-  updated: string
+  __v: number
+  _id: string
 }
 
 export type PackResponse = {
@@ -68,6 +70,7 @@ export type UpdatePack = {
   cardsPack: {
     _id: string
     name: string
+    deckCover?: string
   }
 }
 

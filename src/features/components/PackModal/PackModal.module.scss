@@ -1,0 +1,25 @@
+.packModal {
+
+  &__cover {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ff7d0b;
+    border-radius: 5px;
+    padding: 5px;
+  }
+
+  &__icon {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    border: 2px solid gold;
+    border-radius: 50%;
+    transition: all .2s linear;
+
+    &:hover {
+      border: 2px solid #ff7d0b;
+    }
+  }
+}
+

@@ -1,9 +1,8 @@
 .currentCard__title {
   text-align: left;
   padding-top: 40px;
-  padding-left: 13px;
   height: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 .currentCard__loader {
   text-align: left;
@@ -17,11 +16,20 @@
   position: relative;
   align-items: center;
 }
+.currentCard__container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 13px;
+}
+.currentCard__image {
+  max-width: 170px;
+  max-height: 107px;
+}
 .currentCard__icon {
   border: 1px solid black;
   border-radius: 50%;
-  margin-top: 13px;
-  margin-left: 5px;
+  margin-top: -75px;
+  margin-left: 0px;
   cursor: pointer;
 }
 

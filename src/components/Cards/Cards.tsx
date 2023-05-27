@@ -13,14 +13,14 @@ import { selectUserId } from "features/auth/authSelectors";
 export const Cards = () => {
   const cardsPack = useAppSelector(selectPacks);
   const userId = useAppSelector(selectUserId);
-  const [card, setCard] = useState<Card[]>([]);
   const { id } = useParams();
+  const [card, setCard] = useState<Card[]>([]);
 
   useEffect(() => {
     const card = cardsPack.filter(item => item._id === id);
     setCard(card);
 
-  }, []);
+  }, [cardsPack]);
 
   return (
     <div className={s.cards}>
@@ -33,8 +33,8 @@ export const Cards = () => {
           <CurrentCard
             card={card}
             myCard={card[0].user_id === userId}
-            packId={id}
-          /> : <LinearProgress color={"warning"} />
+            packId={id} /> :
+          <LinearProgress color={"warning"} />
       }
     </div>
   );
