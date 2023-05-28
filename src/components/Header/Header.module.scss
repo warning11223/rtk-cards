@@ -2,13 +2,37 @@
 
 
 .header {
-  background: #FCFCFC;
-  box-shadow: 0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
 
+  background: #FCFCFC;
+
+  --border-size: 3px;
+  --border-angle: 0turn;
+  background-image: conic-gradient(
+                  from var(--border-angle),
+                  #ffffff,
+                  #ffffff 50%,
+                  #ffffff
+  ),
+  conic-gradient(from var(--border-angle), transparent 20%, #08f, #f03);
+  background-size: calc(100% - (var(--border-size) * 2)) calc(100% - (var(--border-size) * 2)),
+  cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  animation: bg-spin 5s linear infinite;
+  @keyframes bg-spin {
+    to {
+      --border-angle: 1turn;
+    }
+  }
+
+  &:hover {
+    animation-play-state: paused;
+  }
 
 
   &__wrapper {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -84,8 +108,14 @@
     color: #000000;
     transition: all .2s linear;
 
-    &:hover{
+    &:hover {
       color: #e56200;
     }
   }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
 }

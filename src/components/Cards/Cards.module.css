@@ -2,23 +2,30 @@
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 50px;
+  padding: 30px 40px 30px 40px;
+  background: #FFFFFF;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  border-radius: 20px;
+  margin-top: 50px;
+}
+.cards__wrapper {
+  padding-bottom: 50px;
 }
 .cards__link {
   position: absolute;
   left: -126px;
-  top: 13px;
+  top: 1px;
+  margin-top: 10px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   text-decoration: none;
   color: #000000;
-  margin-top: 24px;
   margin-left: 136px;
   transition: all 0.2s linear;
 }
 .cards__link:hover {
-  color: #e56200;
+  color: #ffffff;
 }
 
 /*# sourceMappingURL=Cards.module.css.map */

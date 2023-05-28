@@ -44,7 +44,7 @@ export const LearnPack = () => {
     comments: "",
     answerImg: ""
   });
-  console.log(card.shots);
+
   useEffect(() => {
     if (first) {
       dispatch(cardsThunks.getCards({
@@ -95,32 +95,34 @@ export const LearnPack = () => {
       </Link>
       <h3 className={s.learn__title}>Learn "{currentPack[0].name}" pack</h3>
 
-      <div className={s.learn__container}>
-        <div className={s.learn__text}>
-          <span style={{ fontWeight: "bold" }}>Question: </span>
+      <div className={s.learn__wrapper}>
+        <div className={s.learn__container}>
+          <div className={s.learn__text}>
+            <span style={{ fontWeight: "bold" }}>Question: </span>
+            {
+              card.questionImg ?
+                <img src={card.questionImg} alt="questionImg" style={{ height: "150px", width: "150px" }} /> :
+                <p>{card.question}</p>
+            }
+          </div>
+          <p className={s.learn__number}>
+            Number of answers per question:
+            <span style={{ fontWeight: "bold", fontSize: "16px" }}>{card.shots}</span>
+          </p>
           {
-            card.questionImg ?
-              <img src={card.questionImg} alt="questionImg" style={{ height: "150px", width: "150px" }} /> :
-              <p>{card.question}</p>
+            !showAnswer &&
+            <Button
+              variant={"contained"}
+              color={"warning"}
+              sx={{ marginBottom: "40px" }}
+              onClick={() => setShowAnswer(true)}
+            >Show answer</Button>
+          }
+
+          {
+            showAnswer && <ShowAnswer onNext={onNext} card={card} />
           }
         </div>
-        <p className={s.learn__number}>
-          Number of answers per question:
-          <span style={{ fontWeight: "bold", fontSize: "16px" }}>{card.shots}</span>
-        </p>
-        {
-          !showAnswer &&
-          <Button
-            variant={"contained"}
-            color={"warning"}
-            sx={{ marginBottom: "40px" }}
-            onClick={() => setShowAnswer(true)}
-          >Show answer</Button>
-        }
-
-        {
-          showAnswer && <ShowAnswer onNext={onNext} card={card} />
-        }
       </div>
 
     </div>

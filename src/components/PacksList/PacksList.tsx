@@ -41,7 +41,7 @@ export const PacksList = () => {
   };
 
   return (
-    <div>
+    <div className={s.packs}>
       {
         <div className={s.packs__wrapper}>
           <PacksListHeader />

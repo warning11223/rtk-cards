@@ -23,19 +23,21 @@ export const Cards = () => {
   }, [cardsPack]);
 
   return (
-    <div className={s.cards}>
-      <Link className={s.cards__link} to={"/packs-list"}>
-        <img src={arrowLeft} alt="arrow" />
-        Back to Packs List
-      </Link>
-      {
-        card.length ?
-          <CurrentCard
-            card={card}
-            myCard={card[0].user_id === userId}
-            packId={id} /> :
-          <LinearProgress color={"warning"} />
-      }
+    <div className={s.cards__wrapper}>
+      <div className={s.cards}>
+        <Link className={s.cards__link} to={"/packs-list"}>
+          <img src={arrowLeft} alt="arrow" />
+          Back to Packs List
+        </Link>
+        {
+          card.length ?
+            <CurrentCard
+              card={card}
+              myCard={card[0].user_id === userId}
+              packId={id} /> :
+            <LinearProgress color={"warning"} />
+        }
+      </div>
     </div>
   );
 };

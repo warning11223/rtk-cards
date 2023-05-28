@@ -42,7 +42,12 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     max-width: 440px;
     margin: 0 auto;
+    background: #FFFFFF;
 
+  }
+
+  &__wrapper {
+    padding-bottom: 50px;
   }
 
   &__text {

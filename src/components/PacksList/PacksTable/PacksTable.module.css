@@ -1,9 +1,14 @@
 .packs {
-  max-width: 90%;
+  padding-bottom: 50px;
 }
 .packs__wrapper {
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: 50px;
+  border-radius: 20px;
+  background: #FFFFFF;
+  padding: 30px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 /*# sourceMappingURL=PacksTable.module.css.map */

@@ -18,7 +18,7 @@
   transition: all 0.2s linear;
 }
 .learn__link:hover {
-  color: #e56200;
+  color: #ffffff;
 }
 .learn__title {
   font-family: "Montserrat", serif;
@@ -34,6 +34,10 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   max-width: 440px;
   margin: 0 auto;
+  background: #FFFFFF;
+}
+.learn__wrapper {
+  padding-bottom: 50px;
 }
 .learn__text {
   display: flex;
