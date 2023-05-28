@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/rtk-cards/static/css/main.fda9cc96.css",
-    "main.js": "/rtk-cards/static/js/main.b26c9bfc.js",
+    "main.css": "/rtk-cards/static/css/main.7519b610.css",
+    "main.js": "/rtk-cards/static/js/main.e266ab0b.js",
     "static/js/787.8517b185.chunk.js": "/rtk-cards/static/js/787.8517b185.chunk.js",
     "static/media/avatar.svg": "/rtk-cards/static/media/avatar.db6f45612454a280a23dfc6f14dbd45c.svg",
+    "static/media/404.png": "/rtk-cards/static/media/404.bbc15b4fa7e10c3adefc.png",
     "static/media/check.svg": "/rtk-cards/static/media/check.836e246556dd50d082cf05d8309583a6.svg",
-    "static/media/logo.svg": "/rtk-cards/static/media/logo.66aa37dd1366aaf98fa95be1206c3b1e.svg",
     "static/media/edit.svg": "/rtk-cards/static/media/edit.0dbe9cddc611113be3d383e50dd4c11c.svg",
     "static/media/editAvatar.svg": "/rtk-cards/static/media/editAvatar.cba2d0780c64c8702573ab24ce69c94a.svg",
     "index.html": "/rtk-cards/index.html",
     "static/media/logout.svg": "/rtk-cards/static/media/logout.819881059549eb959ed296b6cbf2861e.svg",
+    "static/media/profile.svg": "/rtk-cards/static/media/profile.812e4189d1b7ff1acb5f4a3a1776c75c.svg",
     "static/media/arrow-left.svg": "/rtk-cards/static/media/arrow-left.519110c32786a43bcb3957820cd9c116.svg",
-    "main.fda9cc96.css.map": "/rtk-cards/static/css/main.fda9cc96.css.map",
-    "main.b26c9bfc.js.map": "/rtk-cards/static/js/main.b26c9bfc.js.map",
+    "main.7519b610.css.map": "/rtk-cards/static/css/main.7519b610.css.map",
+    "main.e266ab0b.js.map": "/rtk-cards/static/js/main.e266ab0b.js.map",
     "787.8517b185.chunk.js.map": "/rtk-cards/static/js/787.8517b185.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fda9cc96.css",
-    "static/js/main.b26c9bfc.js"
+    "static/css/main.7519b610.css",
+    "static/js/main.e266ab0b.js"
   ]
 }
