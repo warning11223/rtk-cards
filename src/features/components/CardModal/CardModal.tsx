@@ -18,15 +18,25 @@ type Props = {
   title: string
   answerValue?: string
   questionValue?: string
+  answerImg?: string
+  questionImg?: string
 }
 
-export const CardModal: React.FC<Props> = ({ children, callback, title, questionValue, answerValue }) => {
+export const CardModal: React.FC<Props> = (props) => {
+  const { questionValue, answerValue, answerImg, callback, title, questionImg, children } = props;
+
   const [open, setOpen] = React.useState<boolean>(false);
   const [question, setQuestion] = useState(questionValue ? questionValue : "");
   const [answer, setAnswer] = useState(answerValue ? answerValue : "");
   const [chosenValue, setChosenValue] = useState("");
-  const [answerCover, setAnswerCover] = useState("");
-  const [questionCover, setQuestionCover] = useState("");
+  const [answerCover, setAnswerCover] = useState(answerImg ? answerImg : "");
+  const [questionCover, setQuestionCover] = useState(questionImg ? questionImg : "");
+
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    callback(question, answer, answerCover, questionCover);
+    setOpen(false);
+  };
 
   return (
     <React.Fragment>
@@ -55,13 +65,7 @@ export const CardModal: React.FC<Props> = ({ children, callback, title, question
           <Typography id="basic-modal-dialog-description" textColor="text.tertiary">
             Fill in the information of the card.
           </Typography>
-          <form
-            onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
-              event.preventDefault();
-              callback(question, answer, answerCover, questionCover);
-              setOpen(false);
-            }}
-          >
+          <form onSubmit={submitHandler}>
             <Stack spacing={2}>
 
               <ModalSelect value={chosenValue} setValue={setChosenValue} />
@@ -79,7 +83,7 @@ export const CardModal: React.FC<Props> = ({ children, callback, title, question
                 </FormControl>
               }
               {
-                chosenValue === 'text' &&
+                chosenValue === "text" &&
                 <FormControl>
                   <FormLabel>Answer</FormLabel>
                   <Input
@@ -93,11 +97,11 @@ export const CardModal: React.FC<Props> = ({ children, callback, title, question
 
               {
                 chosenValue === "image" &&
-                <EditImage setCover={setAnswerCover} cover={answerCover} name={"answer"}/>
+                <EditImage setCover={setAnswerCover} cover={answerCover} name={"answer"} />
               }
               {
                 chosenValue === "image" &&
-                <EditImage setCover={setQuestionCover} cover={questionCover} name={"question"}/>
+                <EditImage setCover={setQuestionCover} cover={questionCover} name={"question"} />
               }
 
 

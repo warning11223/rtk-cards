@@ -67,7 +67,9 @@ const updateCard = createAppAsyncThunk<void, UpdateRequest>("cards/updateCard", 
         {
           _id: arg.card._id,
           question: arg.card.question,
-          answer: arg.card.answer
+          answer: arg.card.answer,
+          answerImg: arg.card.answerImg,
+          questionImg: arg.card.questionImg
         }
     });
   }, false);

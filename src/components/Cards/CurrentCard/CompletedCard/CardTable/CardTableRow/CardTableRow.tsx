@@ -38,12 +38,14 @@ export const CardTableRow: React.FC<Props> = ({ card }) => {
       });
   };
 
-  const editCard = (question: string, answer: string) => {
+  const editCard = (question: string, answer: string, answerImg: string, questionImg: string) => {
     dispatch(cardsThunks.updateCard({
       card: {
         _id: card._id,
         question,
-        answer
+        answer,
+        questionImg,
+        answerImg
       }
     }))
       .unwrap()
@@ -85,7 +87,14 @@ export const CardTableRow: React.FC<Props> = ({ card }) => {
           <StarRating grade={card.grade} id={card._id} />
           {
             myCard &&
-            <CardModal callback={editCard} title={"Edit"} answerValue={card.answer} questionValue={card.question}>
+            <CardModal
+              callback={editCard}
+              title={"Edit"}
+              answerValue={card.answer}
+              questionValue={card.question}
+              answerImg={card.answerImg}
+              questionImg={card.questionImg}
+            >
               <IconButton size={"small"}>
                 <BorderColorIcon />
               </IconButton>

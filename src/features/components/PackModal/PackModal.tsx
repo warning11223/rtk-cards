@@ -77,7 +77,7 @@ export const PackModal: React.FC<Props> = ({ children, callback, name, packName,
           >
             <Stack spacing={2}>
 
-              <EditImage deckCover={deckCover} cover={cover} setCover={setCover} />
+              <EditImage cover={cover} setCover={setCover} />
 
               <FormControl>
                 <FormLabel>Name Pack</FormLabel>

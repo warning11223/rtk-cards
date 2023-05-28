@@ -40,7 +40,7 @@
   transition: all 0.2s linear;
 }
 .header__btn:hover {
-  background: #ffffff;
+  background: #fab83b;
 }
 .header__container {
   display: flex;

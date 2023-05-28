@@ -32,10 +32,10 @@ export const TablePagination: React.FC<Props> = (props) => {
     gap: "10px"
   };
 
-  const changePageHandler = (e: ChangeEvent<unknown>) => {
-    // @ts-ignore
-    setPage(+e.currentTarget.innerText);
+  const changePageHandler = (e: ChangeEvent<unknown>, page: number) => {
+    setPage(page);
   };
+
 
   return (
     <Box className={s.tablePagination}>
@@ -43,7 +43,8 @@ export const TablePagination: React.FC<Props> = (props) => {
         count={paginationCount}
         variant="outlined"
         shape="rounded"
-        color={"standard"}
+        // @ts-ignore
+        color={"warning"}
         page={page}
         onChange={changePageHandler}
       />

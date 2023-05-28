@@ -18,7 +18,7 @@
   transition: all 0.2s linear;
 }
 .learn__link:hover {
-  color: #ffffff;
+  color: #fab83b;
 }
 .learn__title {
   font-family: "Montserrat", serif;
@@ -52,8 +52,12 @@
   margin-bottom: 13px;
 }
 .learn__number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 24px;
   color: #000000;
   opacity: 0.5;

@@ -45,6 +45,7 @@ export const LearnPack = () => {
     answerImg: ""
   });
 
+
   useEffect(() => {
     if (first) {
       dispatch(cardsThunks.getCards({
@@ -52,7 +53,8 @@ export const LearnPack = () => {
       }))
         .unwrap()
         .then(res => {
-
+          const currentCard = res.data.cards.find(item => item._id === card._id);
+          return currentCard?.shots! + 1;
         });
       setFirst(false);
     }
@@ -106,8 +108,8 @@ export const LearnPack = () => {
             }
           </div>
           <p className={s.learn__number}>
-            Number of answers per question:
-            <span style={{ fontWeight: "bold", fontSize: "16px" }}>{card.shots}</span>
+            <span>Number of answers per question:</span>
+            <span style={{ fontWeight: "bold", fontSize: "18px" }}>{card.shots}</span>
           </p>
           {
             !showAnswer &&

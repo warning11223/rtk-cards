@@ -116,7 +116,7 @@
   transition: all 0.2s ease-in-out;
 }
 .profile__editBtn:hover {
-  background: #ffffff;
+  background: #fab83b;
 }
 .profile__wrapper {
   position: relative;
@@ -138,7 +138,7 @@
   transition: all 0.2s linear;
 }
 .profile__link:hover {
-  color: #ffffff;
+  color: #fab83b;
 }
 
 /*# sourceMappingURL=Profile.module.css.map */

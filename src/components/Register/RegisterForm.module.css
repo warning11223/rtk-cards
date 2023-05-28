@@ -55,7 +55,7 @@
   transition: all 0.2s linear;
 }
 .register__btn:hover {
-  background: #ffffff;
+  background: #fab83b;
 }
 .register__text {
   margin-bottom: 15px;

@@ -21,7 +21,7 @@ type Props = {
 export const CurrentCard: React.FC<Props> = ({ card, myCard, packId }) => {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const loading = useAppSelector(selectAuthLoading);
-  console.log(visiblePopup);
+
   return (
     <div>
       {
@@ -30,7 +30,7 @@ export const CurrentCard: React.FC<Props> = ({ card, myCard, packId }) => {
           : <div className={s.currentCard__wrapper}>
             <div className={s.currentCard__container}>
               <h3 className={s.currentCard__title}>
-                Name Pack: <span style={{ color: "#ff7d0b", marginRight: '10px' }}>{card[0].name}</span>
+                Name Pack: <span style={{ color: "#ff7d0b", marginRight: "10px" }}>{card[0].name}</span>
               </h3>
               <img
                 src={card[0].deckCover ? card[0].deckCover : listIcon}

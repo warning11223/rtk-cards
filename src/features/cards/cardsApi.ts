@@ -86,8 +86,10 @@ export type CreateRequest = {
 export type UpdateRequest = {
   card: {
     _id: string
-    question: string
-    answer: string
+    question?: string
+    answer?: string
+    answerImg?: string
+    questionImg?: string
   }
 }
 
