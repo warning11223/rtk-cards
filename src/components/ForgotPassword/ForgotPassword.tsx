@@ -1,5 +1,5 @@
 import React from "react";
-import { ForgotPasswordForm } from "components/ForgotPassword/ForgotPasswordForm";
+import { ForgotPasswordForm } from "components/ForgotPassword";
 import { Navigate } from "react-router-dom";
 import { Loading } from "features/auth/authSlice";
 import { Loader } from "components/Loader/Loader";

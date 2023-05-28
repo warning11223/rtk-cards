@@ -6,13 +6,13 @@ import s from "./LearnPack.module.scss";
 import { useAppDispatch, useAppSelector } from "common/hooks";
 import { selectPacks } from "features/packs/packsSelectors";
 import Button from "@mui/material/Button/Button";
-import { ShowAnswer } from "components/LearnPack/ShowAnswer/ShowAnswer";
+import { ShowAnswer } from "components/LearnPack/ShowAnswer";
 import { CardType } from "features/cards/cardsApi";
 import { cardsThunks } from "features/cards/cardsSlice";
 import { selectCards } from "features/cards/cardsSelectors";
 import { toast } from "react-toastify";
 import { selectAuthLoading } from "features/auth/authSelectors";
-import { Loader } from "components/Loader/Loader";
+import { Loader } from "components/Loader";
 import { Loading } from "features/auth/authSlice";
 import { getCard } from "common/utils/getCard";
 
@@ -51,11 +51,6 @@ export const LearnPack = () => {
       dispatch(cardsThunks.getCards({
         cardsPack_id: id!
       }))
-        .unwrap()
-        .then(res => {
-          const currentCard = res.data.cards.find(item => item._id === card._id);
-          return currentCard?.shots! + 1;
-        });
       setFirst(false);
     }
 
@@ -72,10 +67,11 @@ export const LearnPack = () => {
       }))
         .unwrap()
         .then(res => {
+          setCard(card => ({...card, shots: res.res.updatedGrade.shots}))
           toast.success("Answer taken into account");
-
         })
         .catch(err => {
+          console.log(err);
           toast.error(err.e.response.data.error);
         });
 

@@ -1,6 +1,5 @@
 import React from "react";
-import Button from "@mui/material/Button/Button";
-import { CardModal } from "features/components/CardModal/CardModal";
+import { CardModal } from "features/components/CardModal";
 
 type Props = {
   onClickCallback: (question: string, answer: string, answerCover: string, questionCover: string) => void

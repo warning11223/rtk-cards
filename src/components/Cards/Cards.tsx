@@ -6,7 +6,7 @@ import arrowLeft from "assets/img/arrow-left.svg";
 import { useAppSelector } from "common/hooks";
 import { selectPacks } from "features/packs/packsSelectors";
 import { Card } from "features/packs/packsApi";
-import { CurrentCard } from "components/Cards/CurrentCard/CurrentCard";
+import { CurrentCard } from "components/Cards/CurrentCard";
 import { LinearProgress } from "@mui/material";
 import { selectUserId } from "features/auth/authSelectors";
 

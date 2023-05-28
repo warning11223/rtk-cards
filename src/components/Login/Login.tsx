@@ -1,7 +1,7 @@
 import React from "react";
 import { LoginForm } from "components/Login/LoginForm";
 import { Loading } from "features/auth/authSlice";
-import { Loader } from "components/Loader/Loader";
+import { Loader } from "components/Loader";
 import { Navigate } from "react-router-dom";
 
 import s from "./Login.module.scss";

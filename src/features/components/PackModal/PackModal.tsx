@@ -11,7 +11,7 @@ import Add from "@mui/icons-material/Add";
 import Typography from "@mui/joy/Typography";
 
 import listIcon from "../../../assets/img/list-icon.png";
-import { EditImage } from "features/components/PackModal/EditImage";
+import { EditImage } from "features/components/PackModal";
 
 type Props = {
   children: React.ReactNode

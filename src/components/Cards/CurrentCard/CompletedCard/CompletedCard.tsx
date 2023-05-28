@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 
 import s from "./CompletedCard.module.scss";
-import { TableSearch } from "components/PacksList/TableHeader/TableSearch/TableSearch";
-import { CardTable } from "components/Cards/CurrentCard/CompletedCard/CardTable/CardTable";
-import { TablePagination } from "components/PacksList/TablePagination/TablePagination";
+import { TableSearch } from "components/PacksList/TableHeader/TableSearch";
+import { CardTable } from "components/Cards/CurrentCard/CompletedCard/CardTable";
+import { TablePagination } from "components/PacksList/TablePagination";
 import { useAppDispatch, useAppSelector } from "common/hooks";
 import { cardsThunks } from "features/cards/cardsSlice";
 import { toast } from "react-toastify";
 import { selectCards, selectCardsTotalCount } from "features/cards/cardsSelectors";
-import { LearnToCardBtn } from "features/components/LearnToCardBtn/LearnToCardBtn";
-import { AddToCardBtn } from "features/components/AddToCardBtn/AddToCardBtn";
-import EmptyCard from "components/Cards/CurrentCard/EmptyCard/EmptyCard";
+import { LearnToCardBtn } from "features/components/LearnToCardBtn";
+import { AddToCardBtn } from "features/components/AddToCardBtn";
 import { useNavigate } from "react-router-dom";
 import { CreateRequest } from "features/cards/cardsApi";
+import { EmptyCard } from "components/Cards/CurrentCard/EmptyCard";
 
 type Props = {
   id: string
@@ -92,11 +92,6 @@ export const CompletedCard: React.FC<Props> = ({ id, myCard, packId }) => {
                 }
               </div>
               <CardTable setSort={setSort} />
-              {/*{
-                !cards.length ?
-                  <div style={{ fontWeight: "bold", fontSize: "30px", textAlign: "center", paddingTop: "40px" }}>😮 No
-                    cards</div> : <CardTable setSort={setSort} />
-              }*/}
               <TablePagination
                 numberOfDisplayed={pageCount}
                 setNumberOfDisplayed={setPageCount}

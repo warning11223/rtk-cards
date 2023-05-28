@@ -9,8 +9,8 @@ import ModalDialog from "@mui/joy/ModalDialog";
 import Stack from "@mui/joy/Stack";
 import Add from "@mui/icons-material/Add";
 import Typography from "@mui/joy/Typography";
-import { ModalSelect } from "features/components/ModalSelect/ModalSelect";
-import { EditImage } from "features/components/PackModal/EditImage";
+import { ModalSelect } from "features/components/ModalSelect";
+import { EditImage } from "features/components/PackModal";
 
 type Props = {
   children: React.ReactNode

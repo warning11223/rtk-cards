@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import s from "components/PacksList/PacksTable/PacksTable.module.scss";
-import { PacksTable } from "components/PacksList/PacksTable/PacksTable";
+
 import { packsThunks } from "features/packs/packsSlice";
 import { useAppSelector } from "common/hooks/useAppSelector";
-import { PacksListHeader } from "components/PacksList/PacksListHeader/PacksListHeader";
-import { TableHeader } from "components/PacksList/TableHeader/TableHeader";
-import { TablePagination } from "components/PacksList/TablePagination/TablePagination";
-import { selectCardPacksTotalCount, selectPageCount } from "features/packs/packsSelectors";
+import { PacksListHeader } from "components/PacksList/PacksListHeader";
+import { TableHeader } from "components/PacksList/TableHeader";
+import { TablePagination } from "components/PacksList/TablePagination";
+
 import { useActions } from "common/hooks/useActions";
+import { selectCardPacksTotalCount, selectPageCount } from "features/packs/packsSelectors";
+import { PacksTable } from "./PacksTable";
 
 export const PacksList = () => {
   const countPage = useAppSelector(selectPageCount);

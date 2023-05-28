@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Card } from "features/packs/packsApi";
 
 import s from "./CurrentCard.module.scss";
-import { CompletedCard } from "components/Cards/CurrentCard/CompletedCard/CompletedCard";
+import { CompletedCard } from "components/Cards/CurrentCard/CompletedCard";
 import { useAppSelector } from "common/hooks";
 import { selectAuthLoading } from "features/auth/authSelectors";
 import { Loading } from "features/auth/authSlice";
 import { Loader } from "components/Loader/Loader";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton/IconButton";
-import { MorePopup } from "features/components/MorePopup/MorePopup";
+import { MorePopup } from "features/components/MorePopup";
 import listIcon from "assets/img/list-icon.png";
 
 type Props = {

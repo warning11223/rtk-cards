@@ -6,8 +6,8 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAppDispatch, useAppSelector } from "common/hooks";
 import { selectPacks } from "features/packs/packsSelectors";
-import { PackModal } from "features/components/PackModal/PackModal";
-import { DeleteModal } from "features/components/DeleteModal/DeleteModal";
+import { PackModal } from "features/components/PackModal";
+import { DeleteModal } from "features/components/DeleteModal";
 import { deletePackHandler, updatePackHandler } from "common/utils";
 import { Link } from "react-router-dom";
 

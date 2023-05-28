@@ -12,7 +12,7 @@ import { selectCards } from "features/cards/cardsSelectors";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import IconButton from "@mui/material/IconButton/IconButton";
-import { CardTableRow } from "components/Cards/CurrentCard/CompletedCard/CardTable/CardTableRow/CardTableRow";
+import { CardTableRow } from "components/Cards/CurrentCard/CompletedCard/CardTable/CardTableRow";
 
 type Props = {
   setSort: (value: string) => void

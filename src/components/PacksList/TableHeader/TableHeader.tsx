@@ -1,8 +1,8 @@
 import React from "react";
-import { TableSearch } from "components/PacksList/TableHeader/TableSearch/TableSearch";
-import { ShowCardsBtns } from "components/PacksList/TableHeader/ShowCardsBtns/ShowCardsBtns";
-import { NumberOfCards } from "components/PacksList/TableHeader/NumberOfCards/NumberOfCards";
-import { ResetFilterBtn } from "components/PacksList/TableHeader/ResetFilterBtn/ResetFilterBtn";
+import { TableSearch } from "components/PacksList/TableHeader/TableSearch";
+import { ShowCardsBtns } from "components/PacksList/TableHeader/ShowCardsBtns";
+import { NumberOfCards } from "components/PacksList/TableHeader/NumberOfCards";
+import { ResetFilterBtn } from "components/PacksList/TableHeader/ResetFilterBtn";
 import s from "./TableHeader.module.scss";
 
 type Props = {

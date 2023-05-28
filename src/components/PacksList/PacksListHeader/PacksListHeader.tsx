@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "common/hooks";
 import { selectAuthLoading } from "features/auth/authSelectors";
 import { packsThunks } from "features/packs/packsSlice";
 import { toast } from "react-toastify";
-import { PackModal } from "features/components/PackModal/PackModal";
+import { PackModal } from "features/components/PackModal";
 import { useActions } from "common/hooks/useActions";
 
 export const PacksListHeader = () => {

@@ -17,8 +17,6 @@ export const EditImage: React.FC<Props> = ({ setCover, cover, name }) => {
   const [showImage, setShowImage] = useState(false);
   const [isCoverBroken, setIsCoverBroken] = useState(false);
 
-  console.log(cover);
-
   const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
       const file = e.target.files[0];

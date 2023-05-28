@@ -6,8 +6,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import SchoolIcon from "@mui/icons-material/School";
 import { deletePackHandler, updatePackHandler } from "common/utils";
 import { useAppDispatch } from "common/hooks";
-import { PackModal } from "features/components/PackModal/PackModal";
-import { DeleteModal } from "features/components/DeleteModal/DeleteModal";
+import { PackModal } from "features/components/PackModal";
+import { DeleteModal } from "features/components/DeleteModal";
 import { useNavigate } from "react-router-dom";
 
 type Props = {

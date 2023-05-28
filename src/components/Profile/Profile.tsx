@@ -12,7 +12,7 @@ import { useAppSelector } from "common/hooks/useAppSelector";
 import { toast } from "react-toastify";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { selectAuthLoading, selectProfile } from "features/auth/authSelectors";
-import { InputTypeFile } from "components/Profile/InputTypeFile/InputTypeFile";
+import { InputTypeFile } from "components/Profile/InputTypeFile";
 
 type InputType = {
   name: string

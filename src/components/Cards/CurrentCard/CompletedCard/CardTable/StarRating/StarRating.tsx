@@ -6,7 +6,7 @@ type Props = {
   id: string
 }
 
-const StarRating: React.FC<Props> = ({ grade }) => {
+export const StarRating: React.FC<Props> = ({ grade }) => {
 
   return (
     <div>
@@ -23,5 +23,3 @@ const StarRating: React.FC<Props> = ({ grade }) => {
     </div>
   );
 };
-
-export default StarRating;

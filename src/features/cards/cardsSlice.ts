@@ -1,6 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAppAsyncThunk, thunkTryCatch } from "common/utils";
-import { CardRequest, CardResponse, cardsApi, CardType, CreateRequest, UpdateRequest } from "features/cards/cardsApi";
+import {
+  CardRequest,
+  CardResponse,
+  cardsApi,
+  CardType,
+  CreateRequest,
+  UpdatedGrade,
+  UpdateRequest
+} from "features/cards/cardsApi";
 
 const slice = createSlice({
   name: "cards",
@@ -75,9 +83,10 @@ const updateCard = createAppAsyncThunk<void, UpdateRequest>("cards/updateCard", 
   }, false);
 });
 
-const gradeCard = createAppAsyncThunk<void, { grade: number, card_id: string }>("cards/gradeCard", (arg, thunkAPI) => {
+const gradeCard = createAppAsyncThunk<{ res: UpdatedGrade }, { grade: number, card_id: string }>("cards/gradeCard", (arg, thunkAPI) => {
   return thunkTryCatch(thunkAPI, async () => {
-    await cardsApi.gradeCard({ grade: arg.grade, card_id: arg.card_id });
+    const res = await cardsApi.gradeCard({ grade: arg.grade, card_id: arg.card_id });
+    return { res: res.data }
   }, false);
 });
 
