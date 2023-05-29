@@ -25,7 +25,7 @@ export const ShowAnswer: React.FC<Props> = ({ onNext, card }) => {
         </span>
         {
           card.answerImg ?
-            <img src={card.answerImg} alt="answerImg" style={{height: '150px', width: '150px'}} /> :
+            <img src={card.answerImg} alt="answerImg" style={{ maxHeight: "300px", maxWidth: "300px" }} /> :
             <p>{card.answer}</p>
         }
       </div>

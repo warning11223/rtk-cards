@@ -49,7 +49,8 @@ export const LearnPack = () => {
   useEffect(() => {
     if (first) {
       dispatch(cardsThunks.getCards({
-        cardsPack_id: id!
+        cardsPack_id: id!,
+        pageCount: currentPack[0].cardsCount
       }))
       setFirst(false);
     }
@@ -67,11 +68,10 @@ export const LearnPack = () => {
       }))
         .unwrap()
         .then(res => {
-          setCard(card => ({...card, shots: res.res.updatedGrade.shots}))
+          //setCard(card => ({...card, shots: res.res.updatedGrade.shots}))
           toast.success("Answer taken into account");
         })
         .catch(err => {
-          console.log(err);
           toast.error(err.e.response.data.error);
         });
 
@@ -99,7 +99,7 @@ export const LearnPack = () => {
             <span style={{ fontWeight: "bold" }}>Question: </span>
             {
               card.questionImg ?
-                <img src={card.questionImg} alt="questionImg" style={{ height: "150px", width: "150px" }} /> :
+                <img src={card.questionImg} alt="questionImg" style={{ maxHeight: "300px", maxWidth: "300px" }} /> :
                 <p>{card.question}</p>
             }
           </div>

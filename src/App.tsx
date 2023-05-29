@@ -3,12 +3,12 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Cards } from "components/Cards/Cards";
 import { CheckEmail } from "components/ForgotPassword/CheckEmail/CheckEmail";
-import { ForgotPassword } from "components/ForgotPassword/ForgotPassword";
+import { ForgotPassword } from "components/ForgotPassword";
 import { Login } from "components/Login/Login";
 import { PacksList } from "components/PacksList/PacksList";
 import { Profile } from "components/Profile/Profile";
 import { Register } from "components/Register/Register";
-import { SetNewPassword } from "components/SetNewPassword/SetNewPassword";
+import { SetNewPassword } from "components/SetNewPassword";
 import { Header } from "components/Header/Header";
 import { authThunks } from "features/auth/authSlice";
 import { useAppDispatch } from "common/hooks/useAppDispatch";
@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 import { PrivateRoutes } from "features/PrivateRoutes";
 import { LearnPack } from "components/LearnPack/LearnPack";
 import { Page404 } from "components/Page404/Page404";
+import axios from "axios";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -26,6 +27,12 @@ function App() {
       .then(res => {
         toast.success("You have successfully logged in");
       })
+      .catch(error => {
+        if (axios.isAxiosError(error) && error.response?.status === 401) {
+          console.log(error);
+        }
+        toast.error(error)
+      });
   }, []);
 
   return (

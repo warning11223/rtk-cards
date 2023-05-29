@@ -31,43 +31,42 @@ export const RenderRows: React.FC<Props> = ({ cards }) => {
             <TableCell component="th" scope="row" width={150}>
               {
                 loading === Loading.Loading ?
-                <Skeleton animation="wave" /> :
-                <Link to={`/cards/${card._id}`} className={s.rows__link}>
-                  <img src={card.deckCover ? card.deckCover : listIcon} alt="listIcon"
-                       style={{ width: "57px", height: "36px" }} />
-                  {card.name}
-                </Link>
+                  <Skeleton animation="wave" /> :
+                  <Link to={`/cards/${card._id}`} className={s.rows__link}>
+                    <img src={card.deckCover ? card.deckCover : listIcon} alt="listIcon" style={{ width: "57px", height: "36px" }} />
+                    <p className={s.rows__text}>{card.name}</p>
+                  </Link>
               }
             </TableCell>
             <TableCell align="right" width={50}>
               {
                 loading === Loading.Loading ?
-                <Skeleton animation="wave" /> :
-                card.cardsCount
+                  <Skeleton animation="wave" /> :
+                  card.cardsCount
               }
             </TableCell>
             <TableCell align="right" width={150}>
               {
                 loading === Loading.Loading ?
-                <Skeleton animation="wave" /> :
-                card.updated.toString().substring(0, 10)
+                  <Skeleton animation="wave" /> :
+                  card.updated.toString().substring(0, 10)
               }
             </TableCell>
             <TableCell align="right" width={150}>
               {
                 loading === Loading.Loading ?
-                <Skeleton animation="wave" /> :
-                card.user_name
+                  <Skeleton animation="wave" /> :
+                  card.user_name
               }
             </TableCell>
             <TableCell align="right" height={45} width={150}>
               {
                 loading === Loading.Loading ?
-                <Skeleton animation="wave" /> :
-                <TableActions
-                  myCard={userId === card.user_id}
-                  id={card._id}
-                />
+                  <Skeleton animation="wave" /> :
+                  <TableActions
+                    myCard={userId === card.user_id}
+                    id={card._id}
+                  />
               }
             </TableCell>
           </TableRow>
