@@ -68,7 +68,7 @@ export const LearnPack = () => {
       }))
         .unwrap()
         .then(res => {
-          //setCard(card => ({...card, shots: res.res.updatedGrade.shots}))
+          setCard(card => ({...card, shots: res.res.updatedGrade.shots}))
           toast.success("Answer taken into account");
         })
         .catch(err => {

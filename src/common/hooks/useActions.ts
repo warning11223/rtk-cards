@@ -2,10 +2,7 @@ import { useAppDispatch } from "./useAppDispatch";
 import { ActionCreator, ActionCreatorsMapObject, AsyncThunk, bindActionCreators } from "@reduxjs/toolkit";
 import { useMemo } from "react";
 
-
-
-export const useActions = <Actions extends ActionCreatorsMapObject = ActionCreatorsMapObject>
-(actions: Actions): BoundActions<Actions> => {
+export const useActions = <Actions extends ActionCreatorsMapObject = ActionCreatorsMapObject>(actions: Actions): BoundActions<Actions> => {
   const dispatch = useAppDispatch();
 
   return useMemo(() => bindActionCreators(actions, dispatch), []);
@@ -18,6 +15,4 @@ type BoundActions<Actions extends ActionCreatorsMapObject> = {
     : Actions[key];
 };
 
-type BoundAsyncThunk<Action extends ActionCreator<any>> = (
-  ...args: Parameters<Action>
-) => ReturnType<ReturnType<Action>>;
+type BoundAsyncThunk<Action extends ActionCreator<any>> = (...args: Parameters<Action>) => ReturnType<ReturnType<Action>>;

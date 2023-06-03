@@ -1,7 +1,7 @@
 {
   "name": "cards",
   "version": "0.1.0",
-  "homepage": "https://warning11223.github.io/rtk-cards",
+  "homepage": "https://warning11223.github.io/study-with-us",
   "private": true,
   "jest": {
     "moduleNameMapper": {
