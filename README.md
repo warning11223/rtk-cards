@@ -1,4 +1,4 @@
-## github pages - https://warning11223.github.io/rtk-cards/
+## github pages - https://warning11223.github.io/study-with-us/
 
 # 🛠 Technologies:
 
