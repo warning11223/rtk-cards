@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import arrowLeft from "assets/img/arrow-left.svg";
 
 import s from "./LearnPack.module.scss";
-import { useAppDispatch, useAppSelector } from "common/hooks";
+import { useActions, useAppSelector } from "common/hooks";
 import { selectPacks } from "features/packs/packsSelectors";
 import Button from "@mui/material/Button/Button";
 import { ShowAnswer } from "components/LearnPack/ShowAnswer";
@@ -18,13 +18,15 @@ import { getCard } from "common/utils/getCard";
 
 export const LearnPack = () => {
   const { id } = useParams();
-  const dispatch = useAppDispatch();
   const [first, setFirst] = useState<boolean>(true);
   const [showAnswer, setShowAnswer] = useState(false);
+  const { getCards, gradeCard } = useActions(cardsThunks);
   const packs = useAppSelector(selectPacks);
-  const currentPack = packs.filter(item => item._id === id);
   const cards = useAppSelector(selectCards);
   const loading = useAppSelector(selectAuthLoading);
+  
+  const currentPack = packs.filter(item => item._id === id);
+
 
   const [card, setCard] = useState<CardType>({
     _id: "fake",
@@ -45,30 +47,29 @@ export const LearnPack = () => {
     answerImg: ""
   });
 
-
   useEffect(() => {
     if (first) {
-      dispatch(cardsThunks.getCards({
+      getCards({
         cardsPack_id: id!,
         pageCount: currentPack[0].cardsCount
-      }))
+      });
       setFirst(false);
     }
 
     if (cards.length > 0) setCard(getCard(cards));
-  }, [dispatch, id, cards, first]);
+  }, [id, cards, first]);
 
   const onNext = (grade: string) => {
     setShowAnswer(false);
 
     if (cards.length > 0) {
-      dispatch(cardsThunks.gradeCard({
+      gradeCard({
         grade: +grade,
         card_id: card._id
-      }))
+      })
         .unwrap()
         .then(res => {
-          setCard(card => ({...card, shots: res.res.updatedGrade.shots}))
+          setCard(card => ({ ...card, shots: res.res.updatedGrade.shots }));
           toast.success("Answer taken into account");
         })
         .catch(err => {

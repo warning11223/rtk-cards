@@ -4,9 +4,10 @@ import { useParams } from "react-router-dom";
 import { Loading } from "features/auth/authSlice";
 import { Loader } from "components/Loader/Loader";
 import { useAppSelector } from "common/hooks";
+import { selectAuthLoading } from "../../features/auth/authSelectors";
 
 export const SetNewPassword = () => {
-  const loading = useAppSelector(state => state.auth.loading);
+  const loading = useAppSelector(selectAuthLoading);
   const {token} = useParams();
 
   return (

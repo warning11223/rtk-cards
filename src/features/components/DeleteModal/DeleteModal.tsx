@@ -48,7 +48,7 @@ export const DeleteModal: React.FC<Props> = ({ children, callback, name, setVisi
           <Divider />
           <Typography id="alert-dialog-modal-description" textColor="text.tertiary">
             Are you sure you want to delete <span
-            style={{ color: "red", fontSize: "15px", fontWeight: "bold" }}>{name}</span>?
+            style={{ color: "red", fontSize: "15px", fontWeight: "bold", wordBreak: 'break-all' }}>{name}</span>?
           </Typography>
           <Box sx={{ display: "flex", gap: 1, justifyContent: "flex-end", pt: 2 }}>
             <Button variant="plain" color="neutral" onClick={closeHandler}>

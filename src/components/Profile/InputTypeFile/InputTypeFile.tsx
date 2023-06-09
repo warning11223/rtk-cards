@@ -4,19 +4,18 @@ import editAvatar from "assets/img/editAvatar.svg";
 import { convertFileToBase64 } from "common/utils";
 import avatar from "assets/img/avatar.svg";
 import { toast } from "react-toastify";
-import { useAppDispatch } from "common/hooks";
+import { useActions } from "common/hooks";
 import { authThunks } from "features/auth/authSlice";
-
 
 type Props = {
   profileAvatar: string | undefined
 }
 
-export const InputTypeFile: React.FC<Props> = ({profileAvatar}) => {
+export const InputTypeFile: React.FC<Props> = ({ profileAvatar }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [ava, setAva] = useState(profileAvatar ? profileAvatar : avatar);
   const [isAvaBroken, setIsAvaBroken] = useState(false);
-  const dispatch = useAppDispatch();
+  const { updateMe } = useActions(authThunks);
 
   const selectFileHandler = () => {
     inputRef && inputRef.current?.click();
@@ -28,7 +27,7 @@ export const InputTypeFile: React.FC<Props> = ({profileAvatar}) => {
 
       if (file.size < 4000000) {
         convertFileToBase64(file, (file64: string) => {
-          dispatch(authThunks.updateMe({ avatar: file64 }))
+          updateMe({ avatar: file64 })
             .unwrap()
             .then(res => {
               toast.success(`${res.updatedUser.name} avatar was updated`);

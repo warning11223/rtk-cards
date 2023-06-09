@@ -4,7 +4,7 @@ import React from "react";
 import s from "components/PacksList/PacksListHeader/PackListHeader.module.scss";
 import { Loading } from "features/auth/authSlice";
 import { Loader } from "components/Loader/Loader";
-import { useAppDispatch, useAppSelector } from "common/hooks";
+import { useAppSelector } from "common/hooks";
 import { selectAuthLoading } from "features/auth/authSelectors";
 import { packsThunks } from "features/packs/packsSlice";
 import { toast } from "react-toastify";
@@ -12,7 +12,7 @@ import { PackModal } from "features/components/PackModal";
 import { useActions } from "common/hooks/useActions";
 
 export const PacksListHeader = () => {
-  const dispatch = useAppDispatch();
+  const { getPacks } = useActions(packsThunks);
   const loading = useAppSelector(selectAuthLoading);
   const { createPack } = useActions(packsThunks);
 
@@ -26,7 +26,7 @@ export const PacksListHeader = () => {
     })
       .unwrap()
       .then(res => {
-        dispatch(packsThunks.getPacks({}));
+        getPacks({});
         toast.success("Card created");
       })
       .catch(err => {

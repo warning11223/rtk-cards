@@ -4,12 +4,14 @@ import { Navigate } from "react-router-dom";
 import { Loading } from "features/auth/authSlice";
 import { Loader } from "components/Loader/Loader";
 import { useAppSelector } from "common/hooks/useAppSelector";
+import { selectAuthLoading, selectInstructionsWasSent } from "../../features/auth/authSelectors";
 
 export const ForgotPassword = () => {
-  const {instructionsWasSent, loading} = useAppSelector(state => state.auth)
+  const loading = useAppSelector(selectAuthLoading);
+  const instructionsWasSent = useAppSelector(selectInstructionsWasSent);
 
   if (instructionsWasSent) {
-    return <Navigate to={"/check-email"}/>
+    return <Navigate to={"/check-email"} />;
   }
 
   return (

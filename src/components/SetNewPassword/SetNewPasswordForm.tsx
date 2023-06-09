@@ -1,11 +1,11 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import React from "react";
 
 import s from "./SetNewPasswordForm.module.scss";
 import { authThunks } from "features/auth/authSlice";
-import { useAppDispatch } from "common/hooks/useAppDispatch";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useActions } from "../../common/hooks";
 
 type Inputs = {
   password: string,
@@ -16,16 +16,16 @@ type PropsType = {
 }
 
 export const SetNewPasswordForm: React.FC<PropsType> = ({ token }) => {
-  const dispatch = useAppDispatch();
+  const { setNewPassword } = useActions(authThunks);
   const navigate = useNavigate();
   const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = data => {
     if (token) {
-      dispatch(authThunks.setNewPassword({
+      setNewPassword({
         resetPasswordToken: token,
         password: data.password
-      }))
+      })
         .unwrap()
         .then(res => {
           toast.success("Password has been successfully changed");

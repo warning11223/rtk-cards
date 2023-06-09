@@ -6,8 +6,8 @@
     gap: 12px;
     text-decoration: none;
     color: #000000;
+    max-width: 200px;
     transition: all .2s linear;
-    width: max-content;
     border: 1px solid transparent;
     border-radius: 5px;
     padding: 3px;
@@ -21,7 +21,8 @@
   }
 
   &__text {
-    
+    word-break: break-all;
+    max-width: 250px;
   }
 
 

@@ -1,17 +1,17 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import s from "./ForgotPassword.module.scss";
 import React from "react";
 import { Link } from "react-router-dom";
 import { authThunks } from "features/auth/authSlice";
-import { useAppDispatch } from "common/hooks/useAppDispatch";
 import { toast } from "react-toastify";
+import { useActions } from "../../common/hooks";
 
 type Inputs = {
   email: string,
 };
 
 export const ForgotPasswordForm = () => {
-  const dispatch = useAppDispatch();
+  const { forgotPassword } = useActions(authThunks);
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = data => {
@@ -25,7 +25,7 @@ export const ForgotPasswordForm = () => {
                 </div>`
     };
 
-    dispatch(authThunks.forgotPassword(arg))
+    forgotPassword(arg)
       .unwrap()
       .then(res => {
         toast.success("Check your email");

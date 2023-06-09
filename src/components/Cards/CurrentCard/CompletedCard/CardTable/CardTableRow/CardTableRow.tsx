@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton/IconButton";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { DeleteModal } from "features/components/DeleteModal";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useAppDispatch, useAppSelector } from "common/hooks";
+import { useActions, useAppSelector } from "common/hooks";
 import { selectAuthLoading, selectUserId } from "features/auth/authSelectors";
 import { cardsThunks } from "features/cards/cardsSlice";
 import { toast } from "react-toastify";
@@ -22,18 +22,18 @@ type Props = {
 const gradeStyles = { display: "flex", justifyContent: "flex-end", alignItems: "center" };
 
 export const CardTableRow: React.FC<Props> = ({ card }) => {
-  const dispatch = useAppDispatch();
+  const { getCards, deleteCard, updateCard } = useActions(cardsThunks);
   const userId = useAppSelector(selectUserId);
   const myCard = card.user_id === userId;
   const loading = useAppSelector(selectAuthLoading);
 
   const deleteCardHandler = () => {
-    dispatch(cardsThunks.deleteCard(card._id))
+    deleteCard(card._id)
       .unwrap()
       .then(res => {
-        dispatch(cardsThunks.getCards({
+        getCards({
           cardsPack_id: card.cardsPack_id
-        }));
+        });
         toast.success("Card deleted");
       })
       .catch(err => {
@@ -42,7 +42,7 @@ export const CardTableRow: React.FC<Props> = ({ card }) => {
   };
 
   const editCard = (question: string, answer: string, answerImg: string, questionImg: string) => {
-    dispatch(cardsThunks.updateCard({
+    updateCard({
       card: {
         _id: card._id,
         question,
@@ -50,12 +50,12 @@ export const CardTableRow: React.FC<Props> = ({ card }) => {
         questionImg,
         answerImg
       }
-    }))
+    })
       .unwrap()
       .then(res => {
-        dispatch(cardsThunks.getCards({
+        getCards({
           cardsPack_id: card.cardsPack_id
-        }));
+        });
         toast.success("Card edited");
       })
       .catch(err => {
@@ -70,22 +70,24 @@ export const CardTableRow: React.FC<Props> = ({ card }) => {
       <TableCell component="th" scope="row" width={50} height={45}>
         {
           loading === Loading.Loading ?
-          <Skeleton animation="wave" /> :
-          card.questionImg ? <img src={card.questionImg} alt="questionImg" style={{ height: "36px" }} /> : <p>{card.question}</p>
+            <Skeleton animation="wave" /> :
+            card.questionImg ? <img src={card.questionImg} alt="questionImg" style={{ height: "36px" }} /> :
+              <p>{card.question}</p>
         }
       </TableCell>
       <TableCell align="center" width={150}>
         {
           loading === Loading.Loading ?
-          <Skeleton animation="wave" /> :
-          card.answerImg ? <img src={card.answerImg} alt="answerImg" style={{ height: "36px" }} /> : <p>{card.answer}</p>
+            <Skeleton animation="wave" /> :
+            card.answerImg ? <img src={card.answerImg} alt="answerImg" style={{ height: "36px" }} /> :
+              <p>{card.answer}</p>
         }
       </TableCell>
       <TableCell align="right" width={150}>
         {
           loading === Loading.Loading ?
-          <Skeleton animation="wave" /> :
-          card.updated.toString().substring(0, 10)
+            <Skeleton animation="wave" /> :
+            card.updated.toString().substring(0, 10)
         }
       </TableCell>
       <TableCell align={"right"} width={150}>

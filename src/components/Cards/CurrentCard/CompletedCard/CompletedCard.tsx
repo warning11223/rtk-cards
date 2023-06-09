@@ -4,7 +4,7 @@ import s from "./CompletedCard.module.scss";
 import { TableSearch } from "components/PacksList/TableHeader/TableSearch";
 import { CardTable } from "components/Cards/CurrentCard/CompletedCard/CardTable";
 import { TablePagination } from "components/PacksList/TablePagination";
-import { useAppDispatch, useAppSelector } from "common/hooks";
+import { useActions, useAppSelector } from "common/hooks";
 import { cardsThunks } from "features/cards/cardsSlice";
 import { toast } from "react-toastify";
 import { selectCards, selectCardsTotalCount } from "features/cards/cardsSelectors";
@@ -21,7 +21,7 @@ type Props = {
 }
 
 export const CompletedCard: React.FC<Props> = ({ id, myCard, packId }) => {
-  const dispatch = useAppDispatch();
+  const { getCards, createCard } = useActions(cardsThunks);
   const navigate = useNavigate();
   const cardsTotalCount = useAppSelector(selectCardsTotalCount);
   const [sort, setSort] = useState("0grade");
@@ -31,13 +31,13 @@ export const CompletedCard: React.FC<Props> = ({ id, myCard, packId }) => {
   const cards = useAppSelector(selectCards);
 
   useEffect(() => {
-    dispatch(cardsThunks.getCards({
+    getCards({
       cardsPack_id: id,
       sortCards: sort,
       cardQuestion: search,
       page,
       pageCount
-    }))
+    })
       .unwrap()
       .catch(err => {
         toast.error(err.e.response.data.error);
@@ -57,11 +57,11 @@ export const CompletedCard: React.FC<Props> = ({ id, myCard, packId }) => {
       }
     };
 
-    dispatch(cardsThunks.createCard({ card: card.card }))
+    createCard({ card: card.card })
       .unwrap()
       .then(res => {
         toast.success("New card added");
-        dispatch(cardsThunks.getCards({ cardsPack_id: id }));
+        getCards({ cardsPack_id: id });
       })
       .catch(err => {
         toast.error(err.e.response.data.error);
@@ -73,7 +73,7 @@ export const CompletedCard: React.FC<Props> = ({ id, myCard, packId }) => {
   };
 
   if (!cards.length && !myCard) {
-    return <div style={{fontSize: "40px", fontWeight: "bold"}}>No cards ☹️</div>
+    return <div style={{ fontSize: "40px", fontWeight: "bold" }}>No cards ☹️</div>;
   }
 
   return (

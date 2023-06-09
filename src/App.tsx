@@ -11,18 +11,18 @@ import { Register } from "components/Register/Register";
 import { SetNewPassword } from "components/SetNewPassword";
 import { Header } from "components/Header/Header";
 import { authThunks } from "features/auth/authSlice";
-import { useAppDispatch } from "common/hooks/useAppDispatch";
 import { toast } from "react-toastify";
 import { PrivateRoutes } from "features/PrivateRoutes";
 import { LearnPack } from "components/LearnPack/LearnPack";
 import { Page404 } from "components/Page404/Page404";
 import axios from "axios";
+import { useActions } from "./common/hooks";
 
 function App() {
-  const dispatch = useAppDispatch();
+  const { authMe } = useActions(authThunks);
 
   useEffect(() => {
-    dispatch(authThunks.authMe())
+    authMe()
       .unwrap()
       .then(res => {
         toast.success("You have successfully logged in");
@@ -31,16 +31,13 @@ function App() {
         if (axios.isAxiosError(error) && error.response?.status === 401) {
           console.log(error);
         }
-        toast.error(error)
+        toast.error(error);
       });
   }, []);
 
   return (
     <div className="App">
       <Header />
-      {/*{
-        isLoading === Loading.Loading ? <LinearProgress color="warning" /> : null
-      }*/}
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path={"/"} element={<Profile />} />

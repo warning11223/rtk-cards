@@ -1,25 +1,25 @@
 import React, { useState } from "react";
 import edit from "../../assets/img/edit.svg";
-import logout from "../../assets/img/logout.svg";
+import logoutImg from "../../assets/img/logout.svg";
 import arrowLeft from "../../assets/img/arrow-left.svg";
 
 import s from "./Profile.module.scss";
 import { authThunks, Loading } from "features/auth/authSlice";
 import { Link } from "react-router-dom";
 import { Loader } from "components/Loader/Loader";
-import { useAppDispatch } from "common/hooks/useAppDispatch";
 import { useAppSelector } from "common/hooks/useAppSelector";
 import { toast } from "react-toastify";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { selectAuthLoading, selectProfile } from "features/auth/authSelectors";
 import { InputTypeFile } from "components/Profile/InputTypeFile";
+import { useActions } from "../../common/hooks";
 
 type InputType = {
   name: string
 }
 
 export const Profile = () => {
-  const dispatch = useAppDispatch();
+  const { logout, updateMe } = useActions(authThunks);
   const profile = useAppSelector(selectProfile);
   const loading = useAppSelector(selectAuthLoading);
   const [editable, setEditable] = useState(false);
@@ -27,7 +27,7 @@ export const Profile = () => {
   const { register, formState, handleSubmit } = useForm<InputType>();
 
   const logoutHandler = () => {
-    dispatch(authThunks.logout())
+    logout()
       .unwrap()
       .then(() => {
         toast.info("You have successfully logout");
@@ -43,7 +43,7 @@ export const Profile = () => {
     }
     setEditable(false);
     if (name) {
-      dispatch(authThunks.updateMe({ name }))
+      updateMe({ name })
         .unwrap()
         .then(res => {
           toast.info(`Name was changed to ${res.updatedUser.name}`);
@@ -68,7 +68,7 @@ export const Profile = () => {
         <h1 className={s.profile__title}>Personal Information</h1>
 
         <div className={s.profile__avatarContainer}>
-          <InputTypeFile profileAvatar={profile?.avatar}/>
+          <InputTypeFile profileAvatar={profile?.avatar} />
         </div>
 
         <div className={s.profile__editContainer}>
@@ -100,7 +100,7 @@ export const Profile = () => {
 
         <p className={s.profile__email}>{profile?.email}</p>
         <button className={s.profile__btn} onClick={logoutHandler}>
-          <img src={logout} alt="logout" />
+          <img src={logoutImg} alt="logout" />
           Log out
         </button>
       </div>
