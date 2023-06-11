@@ -13,14 +13,16 @@ import { AddToCardBtn } from "features/components/AddToCardBtn";
 import { useNavigate } from "react-router-dom";
 import { CreateRequest } from "features/cards/cardsApi";
 import { EmptyCard } from "components/Cards/CurrentCard/EmptyCard";
+import { Loading } from "../../../../features/auth/authSlice";
 
 type Props = {
   id: string
   myCard?: boolean
   packId: string | undefined
+  loading: string
 }
 
-export const CompletedCard: React.FC<Props> = ({ id, myCard, packId }) => {
+export const CompletedCard: React.FC<Props> = ({ id, myCard, packId, loading }) => {
   const { getCards, createCard } = useActions(cardsThunks);
   const navigate = useNavigate();
   const cardsTotalCount = useAppSelector(selectCardsTotalCount);
@@ -72,26 +74,23 @@ export const CompletedCard: React.FC<Props> = ({ id, myCard, packId }) => {
     navigate(`/learn/${packId}`);
   };
 
-  if (!cards.length && !myCard) {
-    return <div style={{ fontSize: "40px", fontWeight: "bold" }}>No cards ☹️</div>;
-  }
+   /*if (!search && !myCard) {
+     return <div style={{ fontSize: "40px", fontWeight: "bold", height: '300px', paddingTop: '150px' }}>No cards ☹️</div>;
+   }*/
 
   return (
     <>
       {
-        !cards.length
+        !cards.length && myCard && loading !== Loading.Loading
           ? <EmptyCard addCardHandler={addCardHandler} />
           : <div className={s.completed}>
             <div className={s.completed__header}>
               <div className={s.completed__search}>
                 <TableSearch search={search} setSearch={setSearch} />
-                {
-                  myCard
-                    ? <AddToCardBtn onClickCallback={addCardHandler} />
-                    : <LearnToCardBtn onClickCallback={learnHandler} />
-                }
+                { myCard && loading !== Loading.Loading && <AddToCardBtn onClickCallback={addCardHandler} /> }
+                { !!cards.length && loading !== Loading.Loading && <LearnToCardBtn onClickCallback={learnHandler} /> }
               </div>
-              <CardTable setSort={setSort} />
+              <CardTable setSort={setSort} cardsLength={cards.length} loading={loading}/>
               <TablePagination
                 numberOfDisplayed={pageCount}
                 setNumberOfDisplayed={setPageCount}

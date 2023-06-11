@@ -46,6 +46,7 @@ export const NumberOfCards: React.FC<Props> = (props) => {
         <Slider
           disableSwap
           sx={{ m: "0 20px" }}
+          max={121}
           // @ts-ignore
           color={"warning"}
           value={cardsNumber}

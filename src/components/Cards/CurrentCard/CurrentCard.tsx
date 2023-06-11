@@ -59,7 +59,12 @@ export const CurrentCard: React.FC<Props> = ({ card, myCard, packId }) => {
             }
           </div>
       }
-      <CompletedCard id={card[0]._id} myCard={myCard} packId={packId} />
+      <CompletedCard
+        id={card[0]._id}
+        myCard={myCard}
+        packId={packId}
+        loading={loading}
+      />
     </div>
   );
 };

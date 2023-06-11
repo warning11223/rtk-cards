@@ -18,7 +18,7 @@ export const PacksList = () => {
   const [numberOfDisplayed, setNumberOfDisplayed] = useState(countPage <= 0 ? 4 : countPage);
   const [search, setSearch] = useState("");
   const [showPacks, setShowPacks] = useState("");
-  const [cardsNumber, setCardsNumber] = useState([0, 100]);
+  const [cardsNumber, setCardsNumber] = useState([0, 121]);
   const [sort, setSort] = useState("0updated");
   const { getPacks } = useActions(packsThunks);
 
