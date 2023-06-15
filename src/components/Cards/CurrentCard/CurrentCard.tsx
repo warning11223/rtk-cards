@@ -16,9 +16,27 @@ type Props = {
   card: Card[]
   myCard?: boolean
   packId: string | undefined
+  search: string
+  setSearch: (value: string) => void
+  setSort: (value: string) => void
+  pageCount: number
+  setPageCount: (value: number) => void
+  page: number
+  setPage: (value: number) => void
 }
 
-export const CurrentCard: React.FC<Props> = ({ card, myCard, packId }) => {
+export const CurrentCard: React.FC<Props> = ({
+                                               card,
+                                               myCard,
+                                               packId,
+                                               search,
+                                               page,
+                                               pageCount,
+                                               setPageCount,
+                                               setSearch,
+                                               setPage,
+                                               setSort
+                                             }) => {
   const [visiblePopup, setVisiblePopup] = useState(false);
   const loading = useAppSelector(selectAuthLoading);
 
@@ -30,10 +48,10 @@ export const CurrentCard: React.FC<Props> = ({ card, myCard, packId }) => {
           : <div className={s.currentCard__wrapper}>
             <div className={s.currentCard__container}>
               <h3 className={s.currentCard__title}>
-                Name Pack: <span style={{ color: "#ff7d0b", marginRight: "10px" }}>{card[0].name}</span>
+                Name Pack: <span style={{ color: "#ff7d0b", marginRight: "10px" }}>{card[0]?.name}</span>
               </h3>
               <img
-                src={card[0].deckCover ? card[0].deckCover : listIcon}
+                src={card[0]?.deckCover ? card[0]?.deckCover : listIcon}
                 alt="listIcon"
                 className={s.currentCard__image}
               />
@@ -51,8 +69,8 @@ export const CurrentCard: React.FC<Props> = ({ card, myCard, packId }) => {
                   <MorePopup
                     packId={packId}
                     setVisiblePopup={setVisiblePopup}
-                    name={card[0].name}
-                    deckCover={card[0].deckCover}
+                    name={card[0]?.name}
+                    deckCover={card[0]?.deckCover}
                   />
                 }
               </>
@@ -60,10 +78,17 @@ export const CurrentCard: React.FC<Props> = ({ card, myCard, packId }) => {
           </div>
       }
       <CompletedCard
-        id={card[0]._id}
+        id={card[0]?._id}
         myCard={myCard}
         packId={packId}
         loading={loading}
+        search={search}
+        setSearch={setSearch}
+        pageCount={pageCount}
+        page={page}
+        setPage={setPage}
+        setPageCount={setPageCount}
+        setSort={setSort}
       />
     </div>
   );

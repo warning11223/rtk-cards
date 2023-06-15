@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import s from "./CompletedCard.module.scss";
 import { TableSearch } from "components/PacksList/TableHeader/TableSearch";
@@ -20,31 +20,32 @@ type Props = {
   myCard?: boolean
   packId: string | undefined
   loading: string
+  search: string
+  setSearch: (value: string) => void
+  setSort: (value: string) => void
+  pageCount: number
+  setPageCount: (value: number) => void
+  page: number
+  setPage: (value: number) => void
 }
 
-export const CompletedCard: React.FC<Props> = ({ id, myCard, packId, loading }) => {
+export const CompletedCard: React.FC<Props> = ({
+                                                 id,
+                                                 myCard,
+                                                 packId,
+                                                 loading,
+                                                 setSort,
+                                                 setSearch,
+                                                 search,
+                                                 pageCount,
+                                                 setPageCount,
+                                                 setPage,
+                                                 page
+                                               }) => {
   const { getCards, createCard } = useActions(cardsThunks);
   const navigate = useNavigate();
   const cardsTotalCount = useAppSelector(selectCardsTotalCount);
-  const [sort, setSort] = useState("0grade");
-  const [search, setSearch] = useState("");
-  const [page, setPage] = useState(1);
-  const [pageCount, setPageCount] = useState(4);
   const cards = useAppSelector(selectCards);
-
-  useEffect(() => {
-    getCards({
-      cardsPack_id: id,
-      sortCards: sort,
-      cardQuestion: search,
-      page,
-      pageCount
-    })
-      .unwrap()
-      .catch(err => {
-        toast.error(err.e.response.data.error);
-      });
-  }, [sort, search, page, pageCount]);
 
   const addCardHandler = (question: string, answer: string, answerImg: string, questionImg: string) => {
     const card: CreateRequest = {
@@ -73,24 +74,22 @@ export const CompletedCard: React.FC<Props> = ({ id, myCard, packId, loading }) 
   const learnHandler = () => {
     navigate(`/learn/${packId}`);
   };
-
-   /*if (!search && !myCard) {
-     return <div style={{ fontSize: "40px", fontWeight: "bold", height: '300px', paddingTop: '150px' }}>No cards ☹️</div>;
-   }*/
-
+  
+  
   return (
     <>
       {
-        !cards.length && myCard && loading !== Loading.Loading
+        !cards.length && search.length === 0 && myCard && loading !== Loading.Loading
           ? <EmptyCard addCardHandler={addCardHandler} />
           : <div className={s.completed}>
             <div className={s.completed__header}>
               <div className={s.completed__search}>
                 <TableSearch search={search} setSearch={setSearch} />
-                { myCard && loading !== Loading.Loading && <AddToCardBtn onClickCallback={addCardHandler} /> }
-                { !!cards.length && loading !== Loading.Loading && <LearnToCardBtn onClickCallback={learnHandler} /> }
+                {myCard && loading !== Loading.Loading && <AddToCardBtn onClickCallback={addCardHandler} />}
+                {!!cards.length && loading !== Loading.Loading && !myCard &&
+                  <LearnToCardBtn onClickCallback={learnHandler} />}
               </div>
-              <CardTable setSort={setSort} cardsLength={cards.length} loading={loading}/>
+              <CardTable setSort={setSort} cardsLength={cards.length} loading={loading} />
               <TablePagination
                 numberOfDisplayed={pageCount}
                 setNumberOfDisplayed={setPageCount}
